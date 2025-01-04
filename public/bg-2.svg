@@ -1,0 +1,8 @@
+<svg width="192" height="341" viewBox="0 0 192 341" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.04" fill-rule="evenodd" clip-rule="evenodd" d="M192 -253C192 -261.837 184.837 -269 176 -269H88C79.1634 -269 72 -261.837 72 -253V-213C72 -204.163 64.8366 -197 56 -197H16C7.16344 -197 0 -189.837 0 -181V-4C0 4.83655 7.16344 12 16 12H176C184.837 12 192 4.83655 192 -4V-173V-197V-253Z" fill="white"/>
+<rect x="12" y="48" width="48" height="48" rx="8" fill="#36393A"/>
+<path d="M35.9997 62.6665L24.333 81.3332H47.6663L35.9997 62.6665Z" stroke="#818688" stroke-width="2" stroke-linejoin="round"/>
+<path d="M39.5 76.6668L36 74.3335L32.5 76.6668" stroke="#818688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36 74.3335V70.8335" stroke="#818688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path opacity="0.04" fill-rule="evenodd" clip-rule="evenodd" d="M192 52C192 43.1634 184.837 36 176 36H88C79.1634 36 72 43.1634 72 52V92C72 100.837 64.8366 108 56 108H16C7.16344 108 0 115.163 0 124V325C0 333.837 7.16344 341 16 341H176C184.837 341 192 333.837 192 325V132V108V52Z" fill="white"/>
+</svg>
