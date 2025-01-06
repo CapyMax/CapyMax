@@ -2,18 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 
 import DotBg from '@/components/DotBg';
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-function Item({ children }: { children: React.ReactNode }) {
-  return (
-    <Card className="w-9 h-8 bg-[#eef1f3] border-[#eef1f3] p-0">
-      <CardContent className="flex items-center justify-center p-0 h-full">
-        <span className="font-medium italic text-xs text-[#141414]">{children}</span>
-      </CardContent>
-    </Card>
-  )
-}
+import { DateCountDown } from '@/components/DateCountDown';
 
 export const FirstSection: React.FC = () => {
   return (
@@ -30,12 +20,12 @@ export const FirstSection: React.FC = () => {
             </div>
             <div className='text-[20px] mt-[24px]'>
               <div className='flex items-center gap-[6px]'>
-                <div className='w-[210px] text-[#AAB8C1]'>Maximize pledge yield</div>
+                <div className='w-[220px] text-[#AAB8C1]'>Maximize pledge yield</div>
                 <div className='w-[130px] font-medium'>BTC/ETH</div>
                 <div className='text-[#05d394] font-bold'>56%↑</div>
               </div>
               <div className='flex items-center gap-[4px]'>
-                <div className='w-[210px] text-[#AAB8C1]'>Leverage + hedging</div>
+                <div className='w-[220px] text-[#AAB8C1]'>Leverage + hedging</div>
                 <div className='w-[130px] font-medium'>USDC/USDT</div>
                 <div className='text-[#765bff] font-bold'>100%↑</div>
               </div>
@@ -65,11 +55,7 @@ export const FirstSection: React.FC = () => {
                   Get Free Pass
                 </Button>
                 <div className='flex items-center gap-[4px] ml-[12px]'>
-                  <Item>4D</Item>
-                  <div className='text-[#AAB8C1]'>:</div>
-                  <Item>6H</Item>
-                  <div className='text-[#AAB8C1]'>:</div>
-                  <Item>34M</Item>
+                  <DateCountDown targetDate={new Date().getTime() + 12 * 24 * 60 * 60 * 1000} />
                 </div>
               </div>
             </div>

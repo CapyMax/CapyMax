@@ -4,7 +4,8 @@ const config = {
     tailwindcss: {},
     'postcss-px-to-viewport': {
       unitToConvert: 'px',
-      viewportWidth: 1440
+      viewportWidth: 1440,
+      exclude: [/\@rainbow-me\/rainbowkit/]
     }
   },
 };

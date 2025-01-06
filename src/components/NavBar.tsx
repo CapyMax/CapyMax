@@ -1,10 +1,25 @@
+'use client'
+
 import React from 'react';
 import Image from 'next/image';
 import { Tooltip } from './Tooltip';
+import { useAccountModal, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit';
+import { useAccount, useBalance } from 'wagmi';
+import { Button } from './ui/button';
+
+function middleEllipsis(address: string) {
+  return address.slice(0, 4) + '...' + address.slice(-4);
+}
 
 export const Navbar: React.FC = () => {
+  const { openConnectModal } = useConnectModal();
+  const { address, isConnected } = useAccount()
+  const { openChainModal } = useChainModal();
+  const { openAccountModal } = useAccountModal();
+  const balance = useBalance({ address })
+
   return (
-    <nav className="w-full h-[96px] bg-white flex justify-between items-center px-20">
+    <nav className="relative w-full h-[96px] flex justify-between items-center px-20 z-30">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 bg-black rounded-full" />
@@ -28,17 +43,25 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* 积分显示 */}
-        <div className="flex items-center gap-[2px] bg-[#14141405] border border-[#1414140a] pl-3 rounded-[40px] text-[15px] text-black">
-          <div className='flex items-center gap-2 font-semibold ml-1 mr-2'>
-            <Image src="/points.svg" className='w-[20px] h-[20px]' alt="points" width={20} height={20} />
-            <span>Points: 19.98</span>
+        {isConnected && address && (
+          <div
+            className="flex items-center gap-[2px] bg-[#14141405] border border-[#1414140a] pl-3 rounded-[40px] text-[15px] text-black"
+          >
+            <div className='flex items-center gap-2 font-semibold ml-1 mr-2' onClick={() => openChainModal?.()}>
+              <Image src="/points.svg" className='w-[20px] h-[20px]' alt="points" width={20} height={20} />
+              <span>Points: {balance?.data?.formatted}</span>
+            </div>
+            <button
+              className="bg-[#EEF1F3] border border-[#AABBCC] rounded-[88px] px-4 py-2 flex items-center gap-1 text-[#7A838A] text-[15px]"
+              onClick={() => openAccountModal?.()}
+            >
+              {middleEllipsis(address)}
+            </button>
           </div>
-          <button className="bg-[#EEF1F3] border border-[#AABBCC] rounded-[88px] px-4 py-2 flex items-center gap-1 text-[#7A838A] text-[15px]">
-            0x727a...9236
-          </button>
-        </div>
+        )}
 
         {/* 钱包按钮 */}
+        {!isConnected && <Button size="sm" onClick={() => openConnectModal?.()}>Connect Wallet</Button>}
       </div>
     </nav>
   );
