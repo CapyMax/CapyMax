@@ -79,12 +79,25 @@ export default {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+        floating: {
+          '0%': { transform: 'translate(0, 0)' },
+          '25%': { transform: 'translate(8px, -8px)' },
+          '50%': { transform: 'translate(-5px, -12px)' },
+          '75%': { transform: 'translate(-8px, -4px)' },
+          '100%': { transform: 'translate(0, 0)' }
+        }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'floating': 'floating 3s ease-in-out infinite',
+        'floating-slow': 'floating 5s ease-in-out infinite',
+        'floating-fast': 'floating 2s ease-in-out infinite',
+  		},
+      filter: {
+        'active': 'invert(15%) sepia(94%) saturate(6430%) hue-rotate(358deg) brightness(97%) contrast(113%)',
+      }
   	}
   },
   plugins: [tailwindcssAnimate],

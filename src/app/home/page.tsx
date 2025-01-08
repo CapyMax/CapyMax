@@ -8,6 +8,7 @@ import { SeventhSection } from './SeventhSection';
 export default function Home() {
   return (
     <>
+      <div className='h-[72px]'></div>
       <FirstSection />
       <SecondSection />
       <ThirdSection />

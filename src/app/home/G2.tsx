@@ -7,7 +7,7 @@ import { Chart } from '@antv/g2';
 function renderChart(container: HTMLDivElement, color: string, fromColor: string, toColor: string) {
   const chart = new Chart({
     container,
-    autoFit: true
+    autoFit: true,
   });
 
   // 准备数据
@@ -24,18 +24,29 @@ function renderChart(container: HTMLDivElement, color: string, fromColor: string
     { price: 3900, date: '2024-01-10' },
   ];
 
-  // 声明可视化
+  const enterAnimate = { type: 'growInX', duration: 1250, delay: 100 } as const
+
   chart
-    .data(data) // 绑定数据
     .area()
+    .data(data)
+    .encode('x', 'date')
+    .encode('y', 'price')
+    .encode('key', 'x')
+    .axis('x', false)
+    .encode('shape', 'smooth') // 指定形状
+    .style('fill', `linear-gradient(-90deg, ${toColor} 0%, ${fromColor} 100%)`)
+    .animate('enter', enterAnimate);
+
+  chart
+    .line()
+    .data(data)
     .encode('x', 'date')
     .encode('y', 'price')
     .encode('key', 'x')
     .encode('shape', 'smooth') // 指定形状
-    .style('fill', `linear-gradient(-90deg, ${toColor} 0%, ${fromColor} 100%)`)
     .style('stroke', color)
-    .axis('x', false)
-    .animate('enter', {  type: 'pathIn', duration: 1000 }); // 指定更新动画的时间
+    .style('lineWidth', 2)
+    .animate('enter', enterAnimate);
 
   chart.render();
 

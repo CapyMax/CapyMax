@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button';
+import FadeIn from '@/components/FadeIn';
+import { Tooltip } from '@/components/ui/tooltip';
 
 
 const securityData = [
@@ -32,11 +34,7 @@ const securityData = [
       {
         label: "Audit Report",
         icon: null
-      },
-      {
-        label: "公司logo",
-        icon: null
-      },
+      }
     ],
   },
 ]
@@ -45,11 +43,11 @@ export default function FourthSection() {
   return (
     <div className='relative !w-full h-[1230px] overflow-hidden'>
       <Image src="/section-4-bg.png" alt="section-4-bg" className="absolute translate-y-[-365px] !w-full !h-[2048px]" width={1440} height={2048} />
-      <div className='absolute top-[262px] left-[460px] w-[520px] z-1 text-[32px] text-white text-center'>
+      <FadeIn className='absolute top-[262px] left-[460px] w-[520px] z-1 text-[32px] text-white text-center'>
         <div>Supports one-click deposits and withdrawals, </div>
         <div>allowing you to easily enjoy </div>
         <div>multi-strategy, multi-chain returns.</div>
-      </div>
+      </FadeIn>
       <div className="flex flex-col w-full max-w-[1280px] items-start gap-12 absolute top-[800px] left-[80px] z-1">
         <div className="flex flex-col items-start gap-[24px] w-full">
           <Badge variant="outline" className="rounded-full px-3 py-2">
@@ -58,9 +56,9 @@ export default function FourthSection() {
             </span>
           </Badge>
 
-          <h2 className="text-[32px] leading-[38.4px] font-medium">
+          <FadeIn className="text-[32px] leading-[38.4px] font-medium">
             Security and transparency
-          </h2>
+          </FadeIn>
         </div>
 
         <div className="grid grid-cols-3 gap-[42px] w-full">
@@ -80,14 +78,15 @@ export default function FourthSection() {
                     {section.buttons && (
                       <div className="flex gap-3">
                         {section.buttons.map((button, buttonIndex) => (
-                          <Button
-                            key={buttonIndex}
-                            variant="outline"
-                            className="h-10 rounded-[88px]"
-                          >
-                            {button.icon}
-                            <span className="text-xs">{button.label}</span>
-                          </Button>
+                          <Tooltip key={buttonIndex} placement='top' content={<div className='rounded-full bg-[#F3F5F8] px-3 py-1 text-[12px] font-semibold'>COMING SOON...</div>}>
+                            <Button
+                              variant="outline"
+                              className="h-10 rounded-[88px] hover:bg-[#EEF1F3]"
+                            >
+                              {button.icon}
+                              <span className="text-xs">{button.label}</span>
+                            </Button>
+                          </Tooltip>
                         ))}
                       </div>
                     )}
@@ -95,8 +94,8 @@ export default function FourthSection() {
                 </CardContent>
               </Card>
               {index < securityData.length - 1 && (
-                  <Separator orientation="vertical" className="h-52" />
-                )}
+                <Separator orientation="vertical" className="h-52" />
+              )}
             </div>
           ))}
         </div>

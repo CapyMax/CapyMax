@@ -12,29 +12,29 @@ import RoundedButton from "@/components/RoundedButton";
 
 const faqData = [
   {
-    question: "Where Do The Returns Of The Product Come From?",
+    question: "Where do the returns of the product come from?",
     answer:
       "With the currently issued products, we invest your funds in various secure and mature financial projects, increasing liquidity to earn fees such as funding pool opening and closing fees, price impact fees, borrowing fees, and trading fees.",
   },
   {
-    question: "My Investment Risks May Come From Where?",
-    answer: "",
+    question: "My investment risks may come from where?",
+    answer: "The main risks come from the price decline of native tokens (excluding USDC) or losses due to contract attacks.",
   },
   {
-    question: "How Is The Platform's Fund Security Ensured?",
-    answer: "",
+    question: "How is the platform's fund security ensured?",
+    answer: "Please note that all on-chain products carry risks. We will control risks as much as possible and continue enhancing security measures. We commit that every product update will be re-examined by security audit agencies/experts.",
   },
   {
-    question: "Do You Have The Right To Take My Funds?",
-    answer: "",
+    question: "Do you have the right to take my funds?",
+    answer: "We do not have the authority to take your funds. We will only invest them in areas of the market that offer the best risk-reward balance.",
   },
   {
-    question: "What Kind Of Returns Can I Expect?",
-    answer: "",
+    question: "What kind of returns can I expect?",
+    answer: "Generally, you can earn returns that exceed most similar products, while taking on the same level of risk. The specific returns depend on the product strategy.",
   },
   {
     question: "When can I withdraw my funds?",
-    answer: "",
+    answer: "It depends on the product strategy and transaction rules. Typically, the withdrawal process will be completed, and the funds will reach your account within 7 days.",
   },
 ];
 
@@ -63,11 +63,11 @@ export function SixthSection() {
           {faqData.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[28px] font-medium text-white">
+                <div className="flex items-baseline gap-2 hover:text-[#798186] text-white">
+                  <span className="text-[28px] font-medium">
                     Q{index + 1}.{" "}
                   </span>
-                  <span className="text-[16px] font-medium text-white">
+                  <span className="text-[16px] font-medium">
                     {item.question}
                   </span>
                 </div>

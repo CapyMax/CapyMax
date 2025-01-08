@@ -26,6 +26,7 @@ export default function RootLayout({
       >
         <Provider>
           <Navbar />
+          <div id="tooltip-root" className="absolute z-[20]"></div>
           {children}
         </Provider>
       </body>

@@ -1,12 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import RoundedButton from "@/components/RoundedButton";
+import FadeIn from "@/components/FadeIn";
 
 export function SecondSection() {
   return (
     <div className="relative bg-black !w-full h-[360px] text-white">
       <RoundedButton className="absolute top-[48px] left-[80px]">OUR VISION</RoundedButton>
-      <div className="absolute left-[80px] top-[104px] leading-[1.4] text-[32px] w-[320px]">Bringing complex financial strategies within your reach</div>
+      <FadeIn className="absolute left-[80px] top-[104px] leading-[1.4] text-[32px] w-[320px]">
+        <div>Bringing complex financial strategies within your reach</div>
+      </FadeIn>
+
       <>
         <Image src="/bg-1.svg" className="absolute top-[-128px] left-[520px] !w-[192px] !h-[610px]" alt="image-1" width={192} height={610} />
         <div className="absolute left-[544px] top-[152px] w-[140px]">

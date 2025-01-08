@@ -16,7 +16,7 @@ function TimeBox({ children }: { children: React.ReactNode }) {
 }
 
 interface DateCountDownProps {
-  targetDate: Date | string | number;
+  targetDate: Date | string | number | null;
   className?: string;
   onEnd?: () => void;
 }
@@ -41,7 +41,7 @@ export const DateCountDown: React.FC<DateCountDownProps> = ({
   });
 
   useEffect(() => {
-    const target = new Date(targetDate).getTime();
+    const target = new Date(targetDate ?? 0).getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -83,11 +83,11 @@ export const DateCountDown: React.FC<DateCountDownProps> = ({
 
   return (
     <div className={clsx("flex items-center gap-2", className)}>
-      <TimeBox>{timeLeft.days}D</TimeBox>
+      <TimeBox>{targetDate ? timeLeft.days + 'D' : '-'}</TimeBox>
       <div className='text-[#AAB8C1]'>:</div>
-      <TimeBox>{timeLeft.hours}H</TimeBox>
+      <TimeBox>{targetDate ? timeLeft.hours + 'H' : '-'}</TimeBox>
       <div className='text-[#AAB8C1]'>:</div>
-      <TimeBox>{timeLeft.minutes}M</TimeBox>
+      <TimeBox>{targetDate ? timeLeft.minutes + 'M' : '-'}</TimeBox>
     </div>
   );
 };
