@@ -5,14 +5,17 @@ import { Separator } from "@/components/ui/separator";
 import Globe from "@/components/icons/Globe";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import { Tooltip } from "@/components/ui/tooltip";
 
 const socialLinks = [
   {
+    link: "https://x.com/Capy_Max",
     icon: <Image src="/twitter.svg" alt="Twitter icon" width={16} height={16} className="w-8 h-8 text-white" />,
     title: "Follow The Conversation.",
     label: "@capy_max",
   },
   {
+    link: null,
     icon: <Image src="/telegram.svg" alt="Twitter icon" width={16} height={16} className="w-8 h-8 text-white" />,
     title: "News And Updates.",
     label: "Telegram",
@@ -36,13 +39,27 @@ export function SeventhSection() {
                   {item.title}
                 </p>
 
-                <Button
-                  variant="outline"
-                  className="w-[180px] h-10 justify-between px-4 rounded-[88px] border-[#ffffff33] text-white bg-transparent hover:text-black hover:bg-white"
-                >
-                  <span className="text-xs font-medium">{item.label}</span>
-                  <Globe />
-                </Button>
+                {item.link ? (
+                  <a href={item.link} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="w-[180px] h-10 justify-between px-4 rounded-[88px] border-[#ffffff33] text-white bg-transparent hover:text-black hover:bg-white"
+                    >
+                      <span className="text-xs font-medium">{item.label}</span>
+                      <Globe />
+                    </Button>
+                  </a>
+                ) : (
+                  <Tooltip placement="top" content={<div className='rounded-full bg-[#F3F5F8] px-3 py-1 text-[12px] font-semibold'>COMING SOON...</div>}>
+                    <Button
+                      variant="outline"
+                      className="w-[180px] h-10 justify-between px-4 rounded-[88px] border-[#ffffff33] text-white bg-transparent hover:text-black hover:bg-white"
+                    >
+                      <span className="text-xs font-medium">{item.label}</span>
+                      <Globe />
+                    </Button>
+                  </Tooltip>
+                )}
               </div>
             </CardContent>
 
