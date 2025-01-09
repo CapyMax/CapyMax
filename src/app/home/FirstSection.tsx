@@ -11,11 +11,11 @@ export const FirstSection: React.FC = () => {
     <div className="!w-full pb-[80px] relative">
       <DotBg className='absolute top-[-167px] right-0 w-[256px] h-[340px]' />
       <DotBg className='absolute bottom-[45px] left-[-54px] w-[256px] h-[340px]' />
-      <div className='mx-auto mt-[34px] w-[1280px] h-[584px] relative'>
+      <div className='mx-auto mt-[34px] w-[1280px] h-[584px] relative overflow-hidden rounded-[24px]'>
         <Image src="/section-1-bg.svg" alt="section-1-bg" className='absolute top-0 left-0 w-[1280px] h-[584px]' width={1280} height={584} />
-        <div className='relative z-10'>
+        <div className='relative z-10 w-full h-full'>
           <div className='pt-[48px] pl-[48px]'>
-            <div className='w-[450px]'>
+            <div className='w-[500px]'>
               <div className='text-[#AAB8C1] text-[20px] font-medium mb-[24px]'>Try Earning in an Easy Way</div>
               <div className='text-[#141414] text-[40px] font-medium leading-[1.2]'>One-click implementation of professional strategies to maximize returns.</div>
             </div>
@@ -63,6 +63,7 @@ export const FirstSection: React.FC = () => {
             </div>
           </div>
 
+          <video autoPlay loop muted src="/video.mp4" className='aspect-auto absolute bottom-[0px] right-[0px] w-auto h-[280px]' />
           {/* links */}
           <div className='absolute top-[164px] right-[32px] flex items-center justify-center gap-[24px]'>
             <Tooltip placement="top" content={<div className='rounded-full bg-[#F3F5F8] px-3 py-1 text-[12px] font-semibold'>COMING SOON...</div>}>
