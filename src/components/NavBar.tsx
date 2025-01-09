@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useAccountModal, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit';
+import { Tooltip } from '@/components/tooltip';
+import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import { Button } from './ui/button';
 
@@ -16,6 +16,7 @@ function Nav({ children, href }: { children: React.ReactNode; href: string }) {
   return (
     <a
       href={href}
+      target="_blank"
       className="text-black px-3 py-2 text-[15px] flex items-center gap-1 font-semibold hover:text-[#765BFF]"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -33,11 +34,10 @@ function Nav({ children, href }: { children: React.ReactNode; href: string }) {
 export const Navbar: React.FC = () => {
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount()
-  const { openChainModal } = useChainModal();
   const { openAccountModal } = useAccountModal();
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-[72px] flex justify-between items-center px-20 z-30 bg-white">
+    <nav className="sticky top-0 z-30 w-full h-[72px] flex justify-between items-center px-20 bg-white">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <Image src="/logo.svg" alt="logo" className='w-[32px] h-[32px]' width={32} height={32} />
@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
           <div
             className="flex items-center gap-[2px] bg-[#14141405] border border-[#1414140A] pl-3 rounded-[40px] text-[15px] text-black"
           >
-            <div className='flex items-center gap-2 font-semibold ml-1 mr-2' onClick={() => openChainModal?.()}>
+            <div className='flex items-center gap-2 font-semibold ml-1 mr-2'>
               <Image src="/points.svg" className='w-[20px] h-[20px]' alt="points" width={20} height={20} />
               <span>Points: -</span>
             </div>
@@ -67,7 +67,7 @@ export const Navbar: React.FC = () => {
               className="bg-[#EEF1F3] border border-[#AAB8C1] rounded-[88px] px-4 py-2 flex items-center gap-1 text-[#798186] text-[15px]"
               onClick={() => openAccountModal?.()}
             >
-              {middleEllipsis(address)}
+              <span>{middleEllipsis(address)}</span>
             </button>
           </div>
         )}

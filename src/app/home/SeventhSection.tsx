@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import Globe from "@/components/icons/Globe";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { Tooltip } from "@/components/ui/tooltip";
+import { Tooltip } from '@/components/tooltip';
 
 const socialLinks = [
   {

@@ -7,10 +7,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import DotBg from "@/components/DotBg";
 import { G2Chart } from "./G2";
-import { Tooltip } from "@/components/Tooltip";
 import Star from "@/components/icons/Star";
 import FadeIn from "@/components/FadeIn";
-// import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 
 const strategies = [
@@ -28,27 +27,27 @@ const strategies = [
   },
   {
     icon: <Image src="/strategy-3.svg" alt="strategy-3" className="w-[32px] h-[32px]" width={32} height={32} />,
-    title: "Major assets' real yields",
+    title: "Major Assets' Real Yields",
     description:
-      "The strategy ensures users earn real USDC returns and Easy Pontis, providing early investors with dual benefits. Minting and burning are conducted on a 1:1 basis with real assets to ensure exchange rate stability.",
+      "The strategy ensures users earn real USDC returns and Capy Points, providing early investors with dual benefits. Minting and burning are conducted on a 1:1 basis with real assets to ensure exchange rate stability.",
   },
 ];
 
 const strategies2 = [
   {
-    icon: <Image src="/strategy-1.svg" alt="strategy-1" className="w-[32px] h-[32px]" width={32} height={32} />,
+    icon: <Image src="/strategy-4.svg" alt="strategy-1" className="w-[32px] h-[32px]" width={32} height={32} />,
     title: "Active risk control",
     description:
       "This strategy uses 0 to 1x leverage and strictly controls single-trade losses, significantly reducing liquidation risk. The active risk control system will halt trading during periods of low market volatility and resume trading once volatility picks up.",
   },
   {
-    icon: <Image src="/strategy-2.svg" alt="strategy-2" className="w-[32px] h-[32px]" width={32} height={32} />,
+    icon: <Image src="/strategy-5.svg" alt="strategy-2" className="w-[32px] h-[32px]" width={32} height={32} />,
     title: "Volatility Capture Algorithm",
     description:
       "The algorithm leverages the price fluctuation data from the previous day to calculate today's daily volatility, excess volatility, and extreme volatility, capturing the price spread between excess and extreme volatility.",
   },
   {
-    icon: <Image src="/strategy-3.svg" alt="strategy-3" className="w-[32px] h-[32px]" width={32} height={32} />,
+    icon: <Image src="/strategy-6.svg" alt="strategy-3" className="w-[32px] h-[32px]" width={32} height={32} />,
     title: "Antifragile",
     description:
       "This strategy exhibits lasting effectiveness and broad adaptability. As a result, it can adjust to most market conditions and has the potential to evolve into various investment portfolios and hedging strategies, offering more stable excess returns.",
@@ -76,7 +75,7 @@ function RightOfBlock1() {
             <div className="flex items-center gap-2">
               <Image src="/other.svg" alt="other" className="w-[24px] h-[20px]" width={24} height={20} />
               <span className="text-sm font-semibold text-[#141414]/80">
-                Other
+                Point Yield
               </span>
             </div>
           </div>
@@ -84,6 +83,7 @@ function RightOfBlock1() {
 
         <div className="relative h-[228px]">
           <G2Chart className="w-full h-full" color="#765bff" fromColor="#765bff" toColor="#F3F5F8" />
+          <div className="text-right text-sm my-2 text-[#AAB8C1]">*Performance Of Deposit Income Per 10000 USDC</div>
         </div>
       </div>
 
@@ -136,7 +136,7 @@ function RightOfBlock2() {
             <div className="flex items-center gap-2">
               <div className="w-6 h-5 border-t-2 border-dashed border-[#aab8c1] bg-gradient-to-b from-[#1e1e1e]/20 to-transparent" />
               <span className="text-sm font-semibold text-[#141414]/80">
-                Other
+                Point Yield
               </span>
             </div>
           </div>
@@ -177,27 +177,48 @@ function RightOfBlock2() {
 // Data for feature badges
 const features1 = [
   <div className="inline-flex gap-[4px] items-center" key="0">
-    <Star className="block w-[14px] h-[px]" />Dynamic leverage
+    <Star className="block w-[14px] h-[px]" />Dynamic Leverage
   </div>,
   <>Maximize Returns</>,
-  <>Strict Risk Control</>,
-  <>Native asset appreciation</>,
+  <>Low-Risk and Stable</>,
+  <>Native Asset Appreciation</>,
 ];
 
 const features2 = [
   <div className="inline-flex gap-[4px] items-center" key="0">
     <Star className="block w-[14px] h-[px]" />Volatility Capture Algorithm
   </div>,
-  "Medium risk",
+  "Medium Risk",
   "Volatility Strategy",
 ];
 
 export default function ThirdSection() {
   const tooltipView = (
-    <Tooltip className="bg-[#000] text-white w-[400px] text-wrap z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md animate-in fade-in-0" placement="top" content={<div>Hyperliquid is a decentralized exchange, with a TVL of $336,338,198 as of January 7, 2025. The HLP pool provides liquidity to Hyperliquid, earning liquidation fees, transaction fees, and more. For more information about HLP, we encourage investors to read additional materials and conduct further research.</div>}>
-      <span className="relative z-[1000] underline decoration-dashed font-bold">Hyperliquidity (HLP)</span>
-    </Tooltip>
+    <TooltipProvider delayDuration={0}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="relative z-[1000] underline underline-offset-4 decoration-dashed font-bold">Hyperliquidity (HLP)</span>
+        </TooltipTrigger>
+        <TooltipContent className="w-[400px] bg-black text-white text-xs">
+          <span>Hyperliquid is a decentralized exchange, with a TVL of $336,338,198 as of January 7, 2025. The HLP pool provides liquidity to Hyperliquid, earning liquidation fees, transaction fees, and more. For more information about HLP, we encourage investors to read additional materials and conduct further research.</span>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
+
+  const infoIconView = (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Info className="w-4 h-4 text-[#765bff]" />
+        </TooltipTrigger>
+        <TooltipContent className="w-[400px] bg-black text-white text-xs">
+          <div>This yield represents the USDC deposit rate, which is influenced by various factors, and fluctuations are normal. We will continue to update the data regularly. *If the lending rate exceeds the deposit rate, a loss may occur, and the product will be automatically redeemed.</div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+
   return (
     <div className="!w-full h-[1792px] px-[80px] pt-[80px]">
       <header className="flex flex-col w-full max-w-[1280px] gap-2.5 mb-[86px]">
@@ -240,7 +261,7 @@ export default function ThirdSection() {
               <div className="my-[12px] font-semibold text-[#765BFF] text-[12px]">Retain Native Asset Gains + Additional Capital Efficiency</div>
 
               <div className="flex flex-col gap-3">
-                <div className="opacity-80 text-xs tracking-[0.12px] leading-[19.2px]">
+                <div className="text-[#141414] text-xs tracking-[0.12px] leading-[19.2px]">
                   This strategy offers an efficient way to generate stable, high
                   returns from mainstream native tokens. Using a unique risk control
                   system, it dynamically adjusts leverage and provides liquidity to {tooltipView}, earning fees from user transactions. Enjoy
@@ -269,9 +290,7 @@ export default function ThirdSection() {
                   <span className="text-[#765bff] text-4xl font-bold">18.27%</span>
                   <div className="inline-flex items-center gap-1">
                     <span className="text-[#765bff] text-lg font-bold">APR</span>
-                    <Tooltip placement="top" content={<div className="bg-[#000] text-white w-[400px] text-wrap z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md animate-in fade-in-0">This yield represents the USDC deposit rate, which is influenced by various factors, and fluctuations are normal. We will continue to update the data regularly. *If the lending rate exceeds the deposit rate, a loss may occur, and the product will be automatically redeemed.</div>}>
-                      <Info className="w-4 h-4 text-[#765bff]" />
-                    </Tooltip>
+                    {infoIconView}
                   </div>
                 </div>
 
@@ -348,7 +367,7 @@ export default function ThirdSection() {
               <div className="my-[12px] font-semibold text-[#05D394] text-[12px]">Retain Native Asset Gains +Intraday Volatility Returns</div>
 
               <div className="flex flex-col gap-3">
-                <p className="opacity-80 text-xs tracking-[0.12px] leading-[19.2px]">
+                <p className="text-[#141414] text-xs tracking-[0.12px] leading-[19.2px]">
                   This strategy offers an efficient method to achieve stable and high returns from mainstream native tokens. It utilizes advanced hedging strategies and dynamic low-leverage (up to 3x) to provide liquidity to DeFi and other products, earning fees from user transactions. Compared to Product 1, this strategy employs hedging and diversification to lower overall risk, giving users holding USDC the opportunity to achieve over 50% annualized returns, regardless of market conditions.
                 </p>
 
@@ -411,7 +430,7 @@ export default function ThirdSection() {
                   </span>
                   <div className="flex items-center">
                     <span className="font-semibold text-sm text-[#05D394]">
-                      +$1,750
+                      +$9000
                     </span>
                     <ArrowUp className="w-5 h-5 text-[#05D394]" />
                   </div>

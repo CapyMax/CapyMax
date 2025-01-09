@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button';
 import FadeIn from '@/components/FadeIn';
-import { Tooltip } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/tooltip';
 
 
 const securityData = [

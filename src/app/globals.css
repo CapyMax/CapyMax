@@ -112,9 +112,13 @@ html {
 }
 
 .linear-bg {
-  background: linear-gradient(180deg, rgb(152.2665238380432, 132.01978147029877, 255) 0%, rgb(101.77588194608688, 204.74179923534393, 255) 57.36616253852844%, rgb(5.000000176951289, 211.00000262260437, 148.000006377697) 100%);
+  background: linear-gradient(212.52deg, rgba(152, 132, 255, 0.8) 6.66%, rgba(102, 205, 255, 0.8) 58.54%, rgba(5, 211, 148, 0.8) 97.1%);
 }
 
 img {
   user-select: none;
+}
+
+body div.iekbcc0.ju367va.ju367v15.ju367v1j.ju367v2u > div:nth-child(2) {
+  display: none;
 }
