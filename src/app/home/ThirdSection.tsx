@@ -207,7 +207,7 @@ export default function ThirdSection() {
   )
 
   const infoIconView = (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Info className="w-4 h-4 text-[#765bff]" />
