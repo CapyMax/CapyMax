@@ -142,13 +142,13 @@ function RightOfBlock2() {
           </div>
         </div>
 
-        <div className="relative h-[228px">
-          <Image src="/coming-soon.svg" alt="other" className="mx-auto w-[359px] h-[252px]" width={359} height={252} />
+        <div className="relative">
+          <Image src="/coming-soon.svg" alt="other" className="mx-auto w-[363px] h-[228px]" width={363} height={228} />
         </div>
       </div>
 
       <div>
-        <h3 className="text-base font-semibold text-[#141414] mb-[16px]">
+        <h3 className="text-base font-semibold text-[#141414] my-[16px]">
           Strategy Overview
         </h3>
 

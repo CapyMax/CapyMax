@@ -14,7 +14,7 @@ const faqData = [
   {
     question: "Where do the returns of the product come from?",
     answer:
-      "With the currently issued products, we invest your funds in various secure and mature financial projects, increasing liquidity to earn fees such as funding pool opening and closing fees, price impact fees, borrowing fees, and trading fees.",
+      "Through the currently issued products, we invest your funds in various secure and mature financial projects, enhancing liquidity to earn fees such as trading fees, funding fees, borrowing fees, and liquidation fees.",
   },
   {
     question: "My investment risks may come from where?",
