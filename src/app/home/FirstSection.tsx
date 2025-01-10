@@ -8,10 +8,10 @@ import { Tooltip } from '@/components/tooltip';
 
 export const FirstSection: React.FC = () => {
   return (
-    <div className="!w-full pb-[80px] relative">
+    <div className="!w-full mt-[34px] pb-[80px] relative">
       <DotBg className='absolute top-[-167px] right-0 w-[256px] h-[340px]' />
       <DotBg className='absolute bottom-[45px] left-[-54px] w-[256px] h-[340px]' />
-      <div className='mx-auto mt-[34px] w-[1280px] h-[584px] relative overflow-hidden rounded-[24px]'>
+      <div className='mx-auto w-[1280px] h-[584px] relative overflow-hidden rounded-[24px]'>
         <Image src="/section-1-bg.svg" alt="section-1-bg" className='absolute top-0 left-0 w-[1280px] h-[584px]' width={1280} height={584} />
         <div className='relative z-10 w-full h-full'>
           <div className='pt-[48px] pl-[48px]'>

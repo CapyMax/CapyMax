@@ -282,12 +282,12 @@ function renderChart(container: HTMLDivElement, color: string, fromColor: string
       "type": "USDC"
     },
     {
-      "date": "2025-1-3",
+      "date": "2026-1-3",
       "price": 3532.677453,
       "type": "USDC"
     },
     {
-      "date": "2025-1-6",
+      "date": "2026-1-6",
       "price": 3529.574566,
       "type": "USDC"
     },
@@ -562,12 +562,12 @@ function renderChart(container: HTMLDivElement, color: string, fromColor: string
       "type": "Point"
     },
     {
-      "date": "2025-1-3",
+      "date": "2026-1-3",
       "price": 4239.212943,
       "type": "Point"
     },
     {
-      "date": "2025-1-6",
+      "date": "2026-1-6",
       "price": 4235.48948,
       "type": "Point"
     }
