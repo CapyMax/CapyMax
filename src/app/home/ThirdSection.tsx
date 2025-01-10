@@ -75,7 +75,7 @@ function RightOfBlock1() {
             <div className="flex items-center gap-2">
               <Image src="/other.svg" alt="other" className="w-[24px] h-[20px]" width={24} height={20} />
               <span className="text-sm font-semibold text-[#141414]/80">
-                Point Yield
+                Expected Point Yield
               </span>
             </div>
           </div>
@@ -136,7 +136,7 @@ function RightOfBlock2() {
             <div className="flex items-center gap-2">
               <div className="w-6 h-5 border-t-2 border-dashed border-[#aab8c1] bg-gradient-to-b from-[#1e1e1e]/20 to-transparent" />
               <span className="text-sm font-semibold text-[#141414]/80">
-                Point Yield
+                Expected Point Yield
               </span>
             </div>
           </div>
