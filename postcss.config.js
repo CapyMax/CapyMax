@@ -1,12 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const postcssMediaTransform = require('./postcss-media-transform');
+
+
 
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: [
-    'tailwindcss',
+    "tailwindcss",
     [
-      postcssMediaTransform,
+      require.resolve("./postcss-media-transform"),
       {
         unitToConvert: 'px',
         viewportWidth: 1440,
@@ -22,4 +22,4 @@ const config = {
   ]
 };
 
-export default config;
+module.exports = config;

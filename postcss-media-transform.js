@@ -3,14 +3,14 @@
 var filterPropList = {
   exact: function (list) {
     return list.filter(function (m) {
-        return m.match(/^[^\*\!]+$/);
+      return m.match(/^[^\*\!]+$/);
     });
   },
   contain: function (list) {
     return list.filter(function (m) {
-        return m.match(/^\*.+\*$/);
+      return m.match(/^\*.+\*$/);
     }).map(function (m) {
-        return m.substr(1, m.length - 2);
+      return m.substr(1, m.length - 2);
     });
   },
   endWith: function (list) {
@@ -77,25 +77,25 @@ function createPropListMatcher(propList) {
         hasWild ||
         lists.exact.indexOf(prop) > -1 ||
         lists.contain.some(function (m) {
-            return prop.indexOf(m) > -1;
+          return prop.indexOf(m) > -1;
         }) ||
         lists.startWith.some(function (m) {
-            return prop.indexOf(m) === 0;
+          return prop.indexOf(m) === 0;
         }) ||
         lists.endWith.some(function (m) {
-            return prop.indexOf(m) === prop.length - m.length;
+          return prop.indexOf(m) === prop.length - m.length;
         })
       ) &&
       !(
         lists.notExact.indexOf(prop) > -1 ||
         lists.notContain.some(function (m) {
-            return prop.indexOf(m) > -1;
+          return prop.indexOf(m) > -1;
         }) ||
         lists.notStartWith.some(function (m) {
-            return prop.indexOf(m) === 0;
+          return prop.indexOf(m) === 0;
         }) ||
         lists.notEndWith.some(function (m) {
-            return prop.indexOf(m) === prop.length - m.length;
+          return prop.indexOf(m) === prop.length - m.length;
         })
       )
     );
@@ -174,7 +174,7 @@ module.exports = function (options) {
       if (opts.landscape && !rule.parent.params) {
         var landscapeRule = rule.clone().removeAll();
 
-        rule.walkDecls(function(decl) {
+        rule.walkDecls(function (decl) {
           if (decl.value.indexOf(opts.unitToConvert) === -1) return;
           if (!satisfyPropList(decl.prop)) return;
 
@@ -199,7 +199,7 @@ module.exports = function (options) {
         mediaQuerySize = matchedMediaQuery.viewportWidth
       }
 
-      rule.walkDecls(function(decl, i) {
+      rule.walkDecls(function (decl, i) {
         if (decl.value.indexOf(opts.unitToConvert) === -1) return;
         if (!satisfyPropList(decl.prop)) return;
 
@@ -249,7 +249,7 @@ module.exports = function (options) {
     if (landscapeRules.length > 0) {
       var landscapeRoot = new postcss.atRule({ params: '(orientation: landscape)', name: 'media' });
 
-      landscapeRules.forEach(function(rule) {
+      landscapeRules.forEach(function (rule) {
         landscapeRoot.append(rule);
       });
       css.append(landscapeRoot);
@@ -304,6 +304,6 @@ function blacklistedSelector(blacklist, selector) {
 
 function declarationExists(decls, prop, value) {
   return decls.some(function (decl) {
-      return (decl.prop === prop && decl.value === value);
+    return (decl.prop === prop && decl.value === value);
   });
 }
