@@ -104,6 +104,13 @@ html {
   opacity: 0.2; /* 控制透明度 */
 }
 
+@media not all and (min-width: 768px) {
+  .dot-pattern {
+    background-image: radial-gradient(circle at center, #AAB8C1 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+}
+
 .linear-text {
   background: linear-gradient(212.52deg, #9884FF 6.66%, #66CDFF 58.54%, #05D394 97.1%);
   -webkit-background-clip: text;

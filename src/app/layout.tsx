@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
 import { Navbar } from "@/components/NavBar";
@@ -11,8 +11,12 @@ const defaultFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CapyMax",
+  title: "CapyMax"
 };
+
+export const viewport: Viewport = {
+  interactiveWidget: 'resizes-content'
+}
 
 export default function RootLayout({
   children,
@@ -26,7 +30,6 @@ export default function RootLayout({
       >
         <Provider>
           <Navbar />
-          <div id="tooltip-root" className="absolute z-[20]"></div>
           {children}
         </Provider>
       </body>

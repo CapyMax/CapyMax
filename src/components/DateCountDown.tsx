@@ -7,9 +7,9 @@ import { Card, CardContent } from './ui/card';
 
 function TimeBox({ children }: { children: React.ReactNode }) {
   return (
-    <Card className="w-9 h-8 bg-[#eef1f3] border-[#eef1f3] p-0">
+    <Card className="w-9 h-8 max-md:w-[36px] max-md:h-[28px] max-md:rounded-[8px] bg-[#eef1f3] border-[#eef1f3] p-0">
       <CardContent className="flex items-center justify-center p-0 h-full">
-        <span className="font-medium italic text-xs text-[#141414]">{children}</span>
+        <span className="font-medium italic text-[#141414]">{children}</span>
       </CardContent>
     </Card>
   )
@@ -82,7 +82,7 @@ export const DateCountDown: React.FC<DateCountDownProps> = ({
   }, [targetDate, onEnd]);
 
   return (
-    <div className={clsx("flex items-center gap-2", className)}>
+    <div className={clsx("flex items-center gap-2 max-md:gap-0 text-[12px] max-md:text-[12px]", className)}>
       <TimeBox>{targetDate ? timeLeft.days + 'D' : '-'}</TimeBox>
       <div className='text-[#AAB8C1]'>:</div>
       <TimeBox>{targetDate ? timeLeft.hours + 'H' : '-'}</TimeBox>

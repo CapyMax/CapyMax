@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
+import { useMobile } from '@/hooks/misc';
+
 type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
 
 interface TooltipProps {
@@ -19,6 +21,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   placement = 'bottom',
   className
 }) => {
+  const isMobile = useMobile()
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -29,7 +32,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     >
       {children}
       
-      {isVisible && (
+      {isVisible && !isMobile && (
         <div className={clsx(
           'absolute z-50 px-3 py-2',
           'whitespace-nowrap',
