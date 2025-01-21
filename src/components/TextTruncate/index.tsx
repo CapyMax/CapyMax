@@ -2,7 +2,6 @@
 
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { useMobile } from '@/hooks/misc';
 
 export interface TextTruncateProps {
   /** 要显示的文本内容 */
@@ -22,7 +21,7 @@ export interface TextTruncateProps {
   onExpand?: (expanded: boolean) => void;
 }
 
-export const TextTruncateMobile: React.FC<TextTruncateProps> = ({
+export const TextTruncate: React.FC<TextTruncateProps> = ({
   text,
   foldText,
   maxLines = 3,
@@ -33,7 +32,7 @@ export const TextTruncateMobile: React.FC<TextTruncateProps> = ({
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isTruncated, setIsTruncated] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(true); // 反正已经知道是截断的了
   const [height, setHeight] = useState<number | undefined>();
 
   useLayoutEffect(() => {
@@ -108,9 +107,4 @@ export const TextTruncateMobile: React.FC<TextTruncateProps> = ({
       </div>
     </div>
   );
-}; 
-
-export const TextTruncate = (props: TextTruncateProps) => {
-  const isMobile = useMobile();
-  return isMobile ? <TextTruncateMobile {...props} /> : <div className={props.className}>{props.text}</div>
-}
+};

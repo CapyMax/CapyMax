@@ -262,7 +262,7 @@ export default function ThirdSection() {
 
               <div className="flex flex-col gap-3">
                 <TextTruncate
-                  className="text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]"
+                  className="max-md:block hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]"
                   text={
                     <>
                       This strategy offers an efficient way to generate stable, high
@@ -277,6 +277,15 @@ export default function ThirdSection() {
                   expandText="More"
                   collapseText="Less"
                 />
+
+                <div className="block max-md:hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]">
+                  This strategy offers an efficient way to generate stable, high
+                  returns from mainstream native tokens. Using a unique risk control
+                  system, it dynamically adjusts leverage and provides liquidity to {tooltipView}, earning fees from user transactions. Enjoy
+                  stable, sustained high returns and maximize capital efficiency
+                  with 24/7 risk control system monitoring, without the need for
+                  complex cross-platform operations.
+                </div>
 
                 <div className="flex flex-wrap gap-2 max-md:gap-[6px]">
                   {features1.map((feature, index) => (
@@ -376,13 +385,17 @@ export default function ThirdSection() {
 
               <div className="flex flex-col gap-3 max-md:gap-[8px]">
                 <TextTruncate
-                  className="text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]"
+                  className="max-md:block hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]"
                   text={'This strategy provides an effective way to achieve high returns from daily market fluctuations. Inspired by on-exchange strategies from the New York Mercantile Exchange, it uses 0 to 1x leverage and leverages advanced volatility capture algorithms to monitor the market in real-time, waiting for optimal trading opportunities to profit. Compared to Conservative Strategy, this strategy carries higher risks and rewards, giving users the opportunity to achieve over 100% annualized returns, regardless of market conditions.'}
                   foldText={'This strategy provides an effective way to achieve high returns from daily market fluctuations. Inspired by on-exchan...'}
                   maxLines={3}
                   expandText="More"
                   collapseText="Less"
                 />
+
+                <div className="block max-md:hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]">
+                  This strategy provides an effective way to achieve high returns from daily market fluctuations. Inspired by on-exchange strategies from the New York Mercantile Exchange, it uses 0 to 1x leverage and leverages advanced volatility capture algorithms to monitor the market in real-time, waiting for optimal trading opportunities to profit. Compared to Conservative Strategy, this strategy carries higher risks and rewards, giving users the opportunity to achieve over 100% annualized returns, regardless of market conditions.
+                </div>
 
                 <div className="flex flex-wrap gap-2 max-md:gap-[6px]">
                   {features2.map((feature, index) => (

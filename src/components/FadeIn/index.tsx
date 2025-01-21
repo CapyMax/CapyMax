@@ -11,7 +11,7 @@ interface FadeInProps {
  className?: string;
 }
 
-const FadeIn: React.FC<FadeInProps> = ({ children, duration = 0.5, delay = 0, className }) => {
+const FadeIn: React.FC<FadeInProps> = ({ children, duration = .5, delay = 0, className }) => {
  const [viewed, setViewed] = useState(false);
  const { ref, inView } = useInView({
    threshold: 0,

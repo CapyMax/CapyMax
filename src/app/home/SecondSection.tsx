@@ -78,7 +78,7 @@ function Badge(): JSX.Element {
 
 function Title(): JSX.Element {
   return (
-    <FadeIn className="absolute left-[80px] top-[104px] leading-[1.4] text-[32px] w-[320px] max-md:static max-md:text-[20px] max-md:leading-[1.4] max-md:w-[311px] max-md:top-[80px] max-md:left-[28px] max-md:mt-[12px] max-md:mb-[22px]">
+    <FadeIn className="absolute left-[80px] top-[104px] leading-[1.4] text-[32px] w-[320px] max-md:static max-md:text-[20px] max-md:leading-[1.4] max-md:w-[311px] max-md:top-[80px] max-md:left-[28px] max-md:mt-[12px] max-md:mb-[22px] overflow-hidden">
       <div>Bringing complex financial strategies within your reach</div>
     </FadeIn>
   )
@@ -87,7 +87,7 @@ function Title(): JSX.Element {
 export function SecondSection() {
   return (
     <>
-      <div className="block max-md:hidden relative bg-black !w-full h-[360px] text-white">
+      <div className="block max-md:hidden relative bg-black !w-full h-[360px] text-white overflow-hidden">
         <Badge />
         <Title />
 
@@ -123,7 +123,7 @@ export function SecondSection() {
           </div>
         </>
       </div>
-      <div className="hidden max-md:block relative bg-black !w-full max-md:pl-[32px] max-md:py-[24px] text-white">
+      <div className="hidden max-md:block relative bg-black !w-full max-md:pl-[32px] max-md:py-[24px] text-white overflow-hidden">
         <Badge />
         <Title />
         <div className="flex items-end max-md:gap-[24px] overflow-y-auto">
@@ -131,6 +131,7 @@ export function SecondSection() {
           <Two />
           <Three />
           <Four />
+          <div className="w-[24px] h-[1px]"></div>
         </div>
       </div>
     </>
