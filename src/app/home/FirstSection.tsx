@@ -4,7 +4,6 @@ import clsx from 'clsx';
 
 import DotBg from '@/components/DotBg';
 import { Button } from "@/components/ui/button";
-import { DateCountDown } from '@/components/DateCountDown';
 import { Tooltip } from '@/components/tooltip';
 
 function BoostCard({ className }: { className?: string }) {
