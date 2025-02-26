@@ -1,0 +1,825 @@
+export const data = [{
+  "date": "2024-11.06",
+  "price": 291,
+  "type": "USDC"
+}, {
+  "date": "2024-11.07",
+  "price": 424,
+  "type": "USDC"
+}, {
+  "date": "2024-11.08",
+  "price": 412,
+  "type": "USDC"
+}, {
+  "date": "2024-11.09",
+  "price": 434,
+  "type": "USDC"
+}, {
+  "date": "2024-11.11",
+  "price": 633,
+  "type": "USDC"
+}, {
+  "date": "2024-11.12",
+  "price": 711,
+  "type": "USDC"
+}, {
+  "date": "2024-11.13",
+  "price": 800,
+  "type": "USDC"
+}, {
+  "date": "2024-11.14",
+  "price": 853,
+  "type": "USDC"
+}, {
+  "date": "2024-11.15",
+  "price": 955,
+  "type": "USDC"
+}, {
+  "date": "2024-11.16",
+  "price": 885,
+  "type": "USDC"
+}, {
+  "date": "2024-11.17",
+  "price": 830,
+  "type": "USDC"
+}, {
+  "date": "2024-11.18",
+  "price": 790,
+  "type": "USDC"
+}, {
+  "date": "2024-11.19",
+  "price": 779,
+  "type": "USDC"
+}, {
+  "date": "2024-11.20",
+  "price": 805,
+  "type": "USDC"
+}, {
+  "date": "2024-11.21",
+  "price": 849,
+  "type": "USDC"
+}, {
+  "date": "2024-11.22",
+  "price": 974,
+  "type": "USDC"
+}, {
+  "date": "2024-11.23",
+  "price": 1040,
+  "type": "USDC"
+}, {
+  "date": "2024-11.24",
+  "price": 978,
+  "type": "USDC"
+}, {
+  "date": "2024-11.25",
+  "price": 990,
+  "type": "USDC"
+}, {
+  "date": "2024-11.26",
+  "price": 998,
+  "type": "USDC"
+}, {
+  "date": "2024-11.27",
+  "price": 1017,
+  "type": "USDC"
+}, {
+  "date": "2024-11.28",
+  "price": 1025,
+  "type": "USDC"
+}, {
+  "date": "2024-11.29",
+  "price": 1042,
+  "type": "USDC"
+}, {
+  "date": "2024-11.30",
+  "price": 1051,
+  "type": "USDC"
+}, {
+  "date": "2024-12.01",
+  "price": 1057,
+  "type": "USDC"
+}, {
+  "date": "2024-12.02",
+  "price": 1070,
+  "type": "USDC"
+}, {
+  "date": "2024-12.03",
+  "price": 1088,
+  "type": "USDC"
+}, {
+  "date": "2024-12.04",
+  "price": 1105,
+  "type": "USDC"
+}, {
+  "date": "2024-12.05",
+  "price": 1038,
+  "type": "USDC"
+}, {
+  "date": "2024-12.06",
+  "price": 1179,
+  "type": "USDC"
+}, {
+  "date": "2024-12.07",
+  "price": 1193,
+  "type": "USDC"
+}, {
+  "date": "2024-12.08",
+  "price": 1201,
+  "type": "USDC"
+}, {
+  "date": "2024-12.09",
+  "price": 1213,
+  "type": "USDC"
+}, {
+  "date": "2024-12.10",
+  "price": 1291,
+  "type": "USDC"
+}, {
+  "date": "2024-12.11",
+  "price": 1354,
+  "type": "USDC"
+}, {
+  "date": "2024-12.12",
+  "price": 1362,
+  "type": "USDC"
+}, {
+  "date": "2024-12.13",
+  "price": 1369,
+  "type": "USDC"
+}, {
+  "date": "2024-12.14",
+  "price": 1366,
+  "type": "USDC"
+}, {
+  "date": "2024-12.15",
+  "price": 1372,
+  "type": "USDC"
+}, {
+  "date": "2024-12.16",
+  "price": 1384,
+  "type": "USDC"
+}, {
+  "date": "2024-12.17",
+  "price": 1418,
+  "type": "USDC"
+}, {
+  "date": "2024-12.18",
+  "price": 1444,
+  "type": "USDC"
+}, {
+  "date": "2024-12.19",
+  "price": 1471,
+  "type": "USDC"
+}, {
+  "date": "2024-12.20",
+  "price": 1508,
+  "type": "USDC"
+}, {
+  "date": "2024-12.21",
+  "price": 1528,
+  "type": "USDC"
+}, {
+  "date": "2024-12.22",
+  "price": 1533,
+  "type": "USDC"
+}, {
+  "date": "2024-12.23",
+  "price": 1532,
+  "type": "USDC"
+}, {
+  "date": "2024-12.24",
+  "price": 1574,
+  "type": "USDC"
+}, {
+  "date": "2024-12.25",
+  "price": 1567,
+  "type": "USDC"
+}, {
+  "date": "2024-12.26",
+  "price": 1579,
+  "type": "USDC"
+}, {
+  "date": "2024-12.27",
+  "price": 1574,
+  "type": "USDC"
+}, {
+  "date": "2024-12.28",
+  "price": 1561,
+  "type": "USDC"
+}, {
+  "date": "2024-12.29",
+  "price": 1571,
+  "type": "USDC"
+}, {
+  "date": "2024-12.30",
+  "price": 1540,
+  "type": "USDC"
+}, {
+  "date": "2024-12.31",
+  "price": 1524,
+  "type": "USDC"
+}, {
+  "date": "2025-01.01",
+  "price": 1525,
+  "type": "USDC"
+}, {
+  "date": "2025-01.02",
+  "price": 1547,
+  "type": "USDC"
+}, {
+  "date": "2025-01.03",
+  "price": 1551,
+  "type": "USDC"
+}, {
+  "date": "2025-01.04",
+  "price": 1552,
+  "type": "USDC"
+}, {
+  "date": "2025-01.05",
+  "price": 1558,
+  "type": "USDC"
+}, {
+  "date": "2025-01.06",
+  "price": 1558,
+  "type": "USDC"
+}, {
+  "date": "2025-01.07",
+  "price": 1614,
+  "type": "USDC"
+}, {
+  "date": "2025-01.08",
+  "price": 1672,
+  "type": "USDC"
+}, {
+  "date": "2025-01.09",
+  "price": 1703,
+  "type": "USDC"
+}, {
+  "date": "2025-01.10",
+  "price": 1713,
+  "type": "USDC"
+}, {
+  "date": "2025-01.11",
+  "price": 1713,
+  "type": "USDC"
+}, {
+  "date": "2025-01.12",
+  "price": 1710,
+  "type": "USDC"
+}, {
+  "date": "2025-01.13",
+  "price": 1710,
+  "type": "USDC"
+}, {
+  "date": "2025-01.14",
+  "price": 1718,
+  "type": "USDC"
+}, {
+  "date": "2025-01.15",
+  "price": 1724,
+  "type": "USDC"
+}, {
+  "date": "2025-01.16",
+  "price": 1739,
+  "type": "USDC"
+}, {
+  "date": "2025-01.17",
+  "price": 1756,
+  "type": "USDC"
+}, {
+  "date": "2025-01.18",
+  "price": 1828,
+  "type": "USDC"
+}, {
+  "date": "2025-01.19",
+  "price": 1739,
+  "type": "USDC"
+}, {
+  "date": "2025-01.20",
+  "price": 1823,
+  "type": "USDC"
+}, {
+  "date": "2025-01.21",
+  "price": 1857,
+  "type": "USDC"
+}, {
+  "date": "2025-01.22",
+  "price": 1904,
+  "type": "USDC"
+}, {
+  "date": "2025-01.23",
+  "price": 1926,
+  "type": "USDC"
+}, {
+  "date": "2025-01.24",
+  "price": 1990,
+  "type": "USDC"
+}, {
+  "date": "2025-01.25",
+  "price": 2092,
+  "type": "USDC"
+}, {
+  "date": "2025-01.26",
+  "price": 2043,
+  "type": "USDC"
+}, {
+  "date": "2025-01.27",
+  "price": 2045,
+  "type": "USDC"
+}, {
+  "date": "2025-01.28",
+  "price": 2058,
+  "type": "USDC"
+}, {
+  "date": "2025-01.29",
+  "price": 2085,
+  "type": "USDC"
+}, {
+  "date": "2025-01.30",
+  "price": 2121,
+  "type": "USDC"
+}, {
+  "date": "2025-01.31",
+  "price": 2154,
+  "type": "USDC"
+}, {
+  "date": "2025-02.01",
+  "price": 2136,
+  "type": "USDC"
+}, {
+  "date": "2025-02.02",
+  "price": 2078,
+  "type": "USDC"
+}, {
+  "date": "2025-02.03",
+  "price": 2001,
+  "type": "USDC"
+}, {
+  "date": "2025-02.04",
+  "price": 2004,
+  "type": "USDC"
+}, {
+  "date": "2025-02.05",
+  "price": 2107,
+  "type": "USDC"
+}, {
+  "date": "2025-02.06",
+  "price": 2109,
+  "type": "USDC"
+}, {
+  "date": "2025-02.07",
+  "price": 2124,
+  "type": "USDC"
+}, {
+  "date": "2025-02.08",
+  "price": 2106,
+  "type": "USDC"
+}, {
+  "date": "2025-02.09",
+  "price": 2098,
+  "type": "USDC"
+}, {
+  "date": "2025-02.10",
+  "price": 2160,
+  "type": "USDC"
+}, {
+  "date": "2025-02.11",
+  "price": 2174,
+  "type": "USDC"
+}, {
+  "date": "2025-02.12",
+  "price": 2167,
+  "type": "USDC"
+}, {
+  "date": "2025-02.13",
+  "price": 2173,
+  "type": "USDC"
+}, {
+  "date": "2025-02.14",
+  "price": 2167,
+  "type": "USDC"
+}, {
+  "date": "2025-02.15",
+  "price": 2146,
+  "type": "USDC"
+}, {
+  "date": "2025-02.16",
+  "price": 2072,
+  "type": "USDC"
+}, {
+  "date": "2025-02.17",
+  "price": 2013,
+  "type": "USDC"
+}, {
+  "date": "2024-11.06",
+  "price": 320.1,
+  "type": "Point"
+}, {
+  "date": "2024-11.07",
+  "price": 466.4,
+  "type": "Point"
+}, {
+  "date": "2024-11.08",
+  "price": 453.2,
+  "type": "Point"
+}, {
+  "date": "2024-11.09",
+  "price": 477.4,
+  "type": "Point"
+}, {
+  "date": "2024-11.11",
+  "price": 696.3,
+  "type": "Point"
+}, {
+  "date": "2024-11.12",
+  "price": 782.1,
+  "type": "Point"
+}, {
+  "date": "2024-11.13",
+  "price": 880,
+  "type": "Point"
+}, {
+  "date": "2024-11.14",
+  "price": 938.3,
+  "type": "Point"
+}, {
+  "date": "2024-11.15",
+  "price": 1050.5,
+  "type": "Point"
+}, {
+  "date": "2024-11.16",
+  "price": 973.5,
+  "type": "Point"
+}, {
+  "date": "2024-11.17",
+  "price": 913,
+  "type": "Point"
+}, {
+  "date": "2024-11.18",
+  "price": 869,
+  "type": "Point"
+}, {
+  "date": "2024-11.19",
+  "price": 856.9,
+  "type": "Point"
+}, {
+  "date": "2024-11.20",
+  "price": 885.5,
+  "type": "Point"
+}, {
+  "date": "2024-11.21",
+  "price": 933.9,
+  "type": "Point"
+}, {
+  "date": "2024-11.22",
+  "price": 1071.4,
+  "type": "Point"
+}, {
+  "date": "2024-11.23",
+  "price": 1144,
+  "type": "Point"
+}, {
+  "date": "2024-11.24",
+  "price": 1075.8,
+  "type": "Point"
+}, {
+  "date": "2024-11.25",
+  "price": 1089,
+  "type": "Point"
+}, {
+  "date": "2024-11.26",
+  "price": 1097.8,
+  "type": "Point"
+}, {
+  "date": "2024-11.27",
+  "price": 1118.7,
+  "type": "Point"
+}, {
+  "date": "2024-11.28",
+  "price": 1127.5,
+  "type": "Point"
+}, {
+  "date": "2024-11.29",
+  "price": 1146.2,
+  "type": "Point"
+}, {
+  "date": "2024-11.30",
+  "price": 1156.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.01",
+  "price": 1162.7,
+  "type": "Point"
+}, {
+  "date": "2024-12.02",
+  "price": 1177,
+  "type": "Point"
+}, {
+  "date": "2024-12.03",
+  "price": 1196.8,
+  "type": "Point"
+}, {
+  "date": "2024-12.04",
+  "price": 1215.5,
+  "type": "Point"
+}, {
+  "date": "2024-12.05",
+  "price": 1141.8,
+  "type": "Point"
+}, {
+  "date": "2024-12.06",
+  "price": 1296.9,
+  "type": "Point"
+}, {
+  "date": "2024-12.07",
+  "price": 1312.3,
+  "type": "Point"
+}, {
+  "date": "2024-12.08",
+  "price": 1321.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.09",
+  "price": 1334.3,
+  "type": "Point"
+}, {
+  "date": "2024-12.10",
+  "price": 1420.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.11",
+  "price": 1489.4,
+  "type": "Point"
+}, {
+  "date": "2024-12.12",
+  "price": 1498.2,
+  "type": "Point"
+}, {
+  "date": "2024-12.13",
+  "price": 1505.9,
+  "type": "Point"
+}, {
+  "date": "2024-12.14",
+  "price": 1502.6,
+  "type": "Point"
+}, {
+  "date": "2024-12.15",
+  "price": 1509.2,
+  "type": "Point"
+}, {
+  "date": "2024-12.16",
+  "price": 1522.4,
+  "type": "Point"
+}, {
+  "date": "2024-12.17",
+  "price": 1559.8,
+  "type": "Point"
+}, {
+  "date": "2024-12.18",
+  "price": 1588.4,
+  "type": "Point"
+}, {
+  "date": "2024-12.19",
+  "price": 1618.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.20",
+  "price": 1658.8,
+  "type": "Point"
+}, {
+  "date": "2024-12.21",
+  "price": 1680.8,
+  "type": "Point"
+}, {
+  "date": "2024-12.22",
+  "price": 1686.3,
+  "type": "Point"
+}, {
+  "date": "2024-12.23",
+  "price": 1685.2,
+  "type": "Point"
+}, {
+  "date": "2024-12.24",
+  "price": 1731.4,
+  "type": "Point"
+}, {
+  "date": "2024-12.25",
+  "price": 1723.7,
+  "type": "Point"
+}, {
+  "date": "2024-12.26",
+  "price": 1736.9,
+  "type": "Point"
+}, {
+  "date": "2024-12.27",
+  "price": 1731.4,
+  "type": "Point"
+}, {
+  "date": "2024-12.28",
+  "price": 1717.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.29",
+  "price": 1728.1,
+  "type": "Point"
+}, {
+  "date": "2024-12.30",
+  "price": 1694,
+  "type": "Point"
+}, {
+  "date": "2024-12.31",
+  "price": 1676.4,
+  "type": "Point"
+}, {
+  "date": "2025-01.01",
+  "price": 1677.5,
+  "type": "Point"
+}, {
+  "date": "2025-01.02",
+  "price": 1701.7,
+  "type": "Point"
+}, {
+  "date": "2025-01.03",
+  "price": 1706.1,
+  "type": "Point"
+}, {
+  "date": "2025-01.04",
+  "price": 1707.2,
+  "type": "Point"
+}, {
+  "date": "2025-01.05",
+  "price": 1713.8,
+  "type": "Point"
+}, {
+  "date": "2025-01.06",
+  "price": 1713.8,
+  "type": "Point"
+}, {
+  "date": "2025-01.07",
+  "price": 1775.4,
+  "type": "Point"
+}, {
+  "date": "2025-01.08",
+  "price": 1839.2,
+  "type": "Point"
+}, {
+  "date": "2025-01.09",
+  "price": 1873.3,
+  "type": "Point"
+}, {
+  "date": "2025-01.10",
+  "price": 1884.3,
+  "type": "Point"
+}, {
+  "date": "2025-01.11",
+  "price": 1884.3,
+  "type": "Point"
+}, {
+  "date": "2025-01.12",
+  "price": 1881,
+  "type": "Point"
+}, {
+  "date": "2025-01.13",
+  "price": 1881,
+  "type": "Point"
+}, {
+  "date": "2025-01.14",
+  "price": 1889.8,
+  "type": "Point"
+}, {
+  "date": "2025-01.15",
+  "price": 1896.4,
+  "type": "Point"
+}, {
+  "date": "2025-01.16",
+  "price": 1912.9,
+  "type": "Point"
+}, {
+  "date": "2025-01.17",
+  "price": 1931.6,
+  "type": "Point"
+}, {
+  "date": "2025-01.18",
+  "price": 2010.8,
+  "type": "Point"
+}, {
+  "date": "2025-01.19",
+  "price": 1912.9,
+  "type": "Point"
+}, {
+  "date": "2025-01.20",
+  "price": 2005.3,
+  "type": "Point"
+}, {
+  "date": "2025-01.21",
+  "price": 2042.7,
+  "type": "Point"
+}, {
+  "date": "2025-01.22",
+  "price": 2094.4,
+  "type": "Point"
+}, {
+  "date": "2025-01.23",
+  "price": 2118.6,
+  "type": "Point"
+}, {
+  "date": "2025-01.24",
+  "price": 2189,
+  "type": "Point"
+}, {
+  "date": "2025-01.25",
+  "price": 2301.2,
+  "type": "Point"
+}, {
+  "date": "2025-01.26",
+  "price": 2247.3,
+  "type": "Point"
+}, {
+  "date": "2025-01.27",
+  "price": 2249.5,
+  "type": "Point"
+}, {
+  "date": "2025-01.28",
+  "price": 2263.8,
+  "type": "Point"
+}, {
+  "date": "2025-01.29",
+  "price": 2293.5,
+  "type": "Point"
+}, {
+  "date": "2025-01.30",
+  "price": 2333.1,
+  "type": "Point"
+}, {
+  "date": "2025-01.31",
+  "price": 2369.4,
+  "type": "Point"
+}, {
+  "date": "2025-02.01",
+  "price": 2349.6,
+  "type": "Point"
+}, {
+  "date": "2025-02.02",
+  "price": 2285.8,
+  "type": "Point"
+}, {
+  "date": "2025-02.03",
+  "price": 2201.1,
+  "type": "Point"
+}, {
+  "date": "2025-02.04",
+  "price": 2204.4,
+  "type": "Point"
+}, {
+  "date": "2025-02.05",
+  "price": 2317.7,
+  "type": "Point"
+}, {
+  "date": "2025-02.06",
+  "price": 2319.9,
+  "type": "Point"
+}, {
+  "date": "2025-02.07",
+  "price": 2336.4,
+  "type": "Point"
+}, {
+  "date": "2025-02.08",
+  "price": 2316.6,
+  "type": "Point"
+}, {
+  "date": "2025-02.09",
+  "price": 2307.8,
+  "type": "Point"
+}, {
+  "date": "2025-02.10",
+  "price": 2376,
+  "type": "Point"
+}, {
+  "date": "2025-02.11",
+  "price": 2391.4,
+  "type": "Point"
+}, {
+  "date": "2025-02.12",
+  "price": 2383.7,
+  "type": "Point"
+}, {
+  "date": "2025-02.13",
+  "price": 2390.3,
+  "type": "Point"
+}, {
+  "date": "2025-02.14",
+  "price": 2383.7,
+  "type": "Point"
+}, {
+  "date": "2025-02.15",
+  "price": 2360.6,
+  "type": "Point"
+}, {
+  "date": "2025-02.16",
+  "price": 2279.2,
+  "type": "Point"
+}, {
+  "date": "2025-02.17",
+  "price": 2214.3,
+  "type": "Point"
+}]

@@ -18,7 +18,7 @@ const strategies = [
     icon: <Image src="/strategy-1.svg" alt="strategy-1" className="w-[32px] h-[32px] max-md:w-[28px] max-md:h-[28px]" width={32} height={32} />,
     title: "Leverage Returns",
     description:
-      "Use native assets to obtain 0 to 0.7x leverage through lending protocols, holding native assets while earning additional returns, thus improving capital efficiency."
+      "By applying 0-0.7x leverage on mainstream assets through lending protocols, users retain the underlying asset's yield while earning amplified returns, thereby maximizing capital efficiency."
   },
   {
     icon: <Image src="/strategy-2.svg" alt="strategy-2" className="w-[32px] h-[32px] max-md:w-[28px] max-md:h-[28px]" width={32} height={32} />,
@@ -76,7 +76,7 @@ function RightOfBlock1() {
             <div className="flex items-center gap-2 max-md:gap-[4px]">
               <Image src="/other.svg" alt="other" className="w-[24px] h-[20px] max-md:w-[18px] max-md:h-[16px]" width={24} height={20} />
               <span className="text-sm max-md:text-[10px] max-md:leading-[1.5] font-semibold text-[#141414]/80">
-                Expected Point Yield
+                ×1.1 Point Yield
               </span>
             </div>
           </div>
@@ -84,7 +84,7 @@ function RightOfBlock1() {
 
         <div className="relative h-[228px] max-md:h-[225px]">
           <G2Chart className="w-full h-full" color="#765bff" fromColor="#765bff" toColor="#F3F5F8" />
-          <div className="text-right text-sm max-md:text-[10px] max-md:leading-[1.5] my-2 max-md:my-[4px] text-[#AAB8C1]">*Performance Of Deposit Income Per 10000 USDC</div>
+          <div className="text-right text-sm max-md:text-[10px] max-md:leading-[1.5] my-2 max-md:my-[4px] text-[#AAB8C1]">*Performance Of Deposit Income Per 10,000 USDC</div>
         </div>
       </div>
 
@@ -182,7 +182,7 @@ const features1 = [
   </div>,
   <>Maximize Returns</>,
   <>Low-Risk and Stable</>,
-  <>Native Asset Appreciation</>,
+  <>Direct Deposit of Mainstream Assets</>,
 ];
 
 const features2 = [
@@ -194,18 +194,18 @@ const features2 = [
 ];
 
 export default function ThirdSection() {
-  const tooltipView = (
-    <TooltipProvider delayDuration={0}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <span className="relative z-[1000] underline underline-offset-4 decoration-dashed font-bold">Hyperliquidity (HLP)</span>
-        </TooltipTrigger>
-        <TooltipContent className="w-[400px] bg-black text-white text-xs">
-          <span>Hyperliquid is a decentralized exchange, with a TVL of $336,338,198 as of January 7, 2025. The HLP pool provides liquidity to Hyperliquid, earning liquidation fees, transaction fees, and more. For more information about HLP, we encourage investors to read additional materials and conduct further research.</span>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
+  // const tooltipView = (
+  //   <TooltipProvider delayDuration={0}>
+  //     <Tooltip>
+  //       <TooltipTrigger asChild>
+  //         <span className="relative z-[1000] underline underline-offset-4 decoration-dashed font-bold">Hyperliquidity (HLP)</span>
+  //       </TooltipTrigger>
+  //       <TooltipContent className="w-[400px] bg-black text-white text-xs">
+  //         <span>Hyperliquid is a decentralized exchange, with a TVL of $336,338,198 as of January 7, 2025. The HLP pool provides liquidity to Hyperliquid, earning liquidation fees, transaction fees, and more. For more information about HLP, we encourage investors to read additional materials and conduct further research.</span>
+  //       </TooltipContent>
+  //     </Tooltip>
+  //   </TooltipProvider>
+  // )
 
   const infoIconView = (
     <TooltipProvider delayDuration={0}>
@@ -241,36 +241,29 @@ export default function ThirdSection() {
           <Image src="/grass.svg" alt="grass" className="w-[26px] h-[24px] ml-[30px] max-md:w-[13px] max-md:h-[12px] max-md:ml-[8px]" width={26} height={24} />
         </div>
         <Image src="/section-3-bg-1.svg" alt="frame" className="absolute z-2 top-0 left-0 w-[1280px] h-[672px] max-md:hidden" width={1280} height={672} />
-        <Card className="max-md:rounded-[16px] max-md:mt-[32px] max-md:p-[16px] max-md:border-none max-md:shadow-none absolute z-10 top-[172px] left-[48px] w-[512px] p-8 border-none max-md:relative max-md:top-[0px] max-md:left-[0px] max-md:w-[279px] max-md:mx-auto max-md:h-auto">
+        <Card className="max-md:rounded-[16px] max-md:mt-[32px] max-md:p-[16px] max-md:border-none max-md:shadow-none absolute z-10 top-[160px] left-[48px] w-[512px] p-8 border-none max-md:relative max-md:top-[0px] max-md:left-[0px] max-md:w-[279px] max-md:mx-auto max-md:h-auto">
           <CardContent className="flex flex-col gap-4 p-0 max-md:flex-none">
             <div className="flex flex-col">
-              <div className="flex items-start justify-between max-md:flex-col-reverse">
-                <div className="flex items-center gap-4 max-md:gap-[8px]">
-                  <div className="flex h-9 w-9 max-md:h-[28px] max-md:w-[28px] items-center justify-center bg-[#141414] rounded-lg max-md:rounded-[8px]">
-                    <span className="font-semibold text-white text-xl max-md:text-[14px]">01</span>
-                  </div>
-                  <h2 className="font-semibold text-[#141414] text-[22px] leading-8 max-md:text-[16px] max-md:leading-[22.4px]">
-                    Conservative Strategy
-                  </h2>
+              <span className="mr-[-12px] max-md:mr-0 mt-[-12px] max-md:mt-0 text-right max-md:mb-[4px] text-nowrap text-xs max-md:text-[10px] max-md:leading-[1.5] font-medium bg-gradient-to-b from-[#9884FF] via-[#65CCFF] to-[#05D394] bg-clip-text text-transparent">
+                Coming Soon
+              </span>
+              <div className="flex items-center gap-4 max-md:gap-[8px]">
+                <div className="flex h-9 w-9 max-md:h-[28px] max-md:w-[28px] items-center justify-center bg-[#141414] rounded-lg max-md:rounded-[8px]">
+                  <span className="font-semibold text-white text-xl max-md:text-[14px]">01</span>
                 </div>
-                <span className="max-md:self-end flex-nowrap text-nowrap text-xs max-md:text-[10px] max-md:leading-[1.5] font-medium bg-gradient-to-b from-[#9884FF] via-[#65CCFF] to-[#05D394] bg-clip-text text-transparent">
-                  Coming Soon
-                </span>
+                <h2 className="font-semibold text-[#141414] text-[22px] max-md:text-[16px] max-md:leading-[22.4px]">
+                  Market-Making Hedge Strategy
+                </h2>
               </div>
 
-              <div className="my-[12px] max-md:my-[12px] font-semibold text-[#765BFF] text-[12px] max-md:text-[12px]">Retain Native Asset Gains + Additional Capital Efficiency</div>
+              <div className="my-[12px] max-md:my-[12px] font-semibold text-[#765BFF] text-[12px] max-md:text-[12px]">Retain Asset Yields + Enhanced Capital Efficiency</div>
 
               <div className="flex flex-col gap-3">
                 <TextTruncate
                   className="max-md:block hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]"
                   text={
                     <>
-                      This strategy offers an efficient way to generate stable, high
-                      returns from mainstream native tokens. Using a unique risk control
-                      system, it dynamically adjusts leverage and provides liquidity to {tooltipView}, earning fees from user transactions. Enjoy
-                      stable, sustained high returns and maximize capital efficiency
-                      with 24/7 risk control system monitoring, without the need for
-                      complex cross-platform operations.
+                      This strategy offers a more capital-efficient solution to achieve stable, high-yield returns from mainstream tokens. It utilizes a proprietary risk engine with dynamic leverage adjustments, actively deploying liquidity into Solana-based market-making hedge pools (Neutral, NX Finance, Vectis), and employs automated allocation strategies to consistently achieve optimal asset returns.
                     </>
                   }
                   maxLines={3}
@@ -279,12 +272,7 @@ export default function ThirdSection() {
                 />
 
                 <div className="block max-md:hidden text-[#141414] text-xs tracking-[0.12px] leading-[19.2px] max-md:text-[12px] max-md:leading-[19.2px]">
-                  This strategy offers an efficient way to generate stable, high
-                  returns from mainstream native tokens. Using a unique risk control
-                  system, it dynamically adjusts leverage and provides liquidity to {tooltipView}, earning fees from user transactions. Enjoy
-                  stable, sustained high returns and maximize capital efficiency
-                  with 24/7 risk control system monitoring, without the need for
-                  complex cross-platform operations.
+                  This strategy offers a more capital-efficient solution to achieve stable, high-yield returns from mainstream tokens. It utilizes a proprietary risk engine with dynamic leverage adjustments, actively deploying liquidity into Solana-based market-making hedge pools (Neutral, NX Finance, Vectis), and employs automated allocation strategies to consistently achieve optimal asset returns.
                 </div>
 
                 <div className="flex flex-wrap gap-2 max-md:gap-[6px]">
@@ -304,7 +292,7 @@ export default function ThirdSection() {
             <div className="flex flex-col gap-4 max-md:gap-[16px] max-md:mt-[32px]">
               <div className="flex flex-col gap-2 max-md:gap-[8px]">
                 <div className="relative flex items-baseline gap-[6px] max-md:gap-[4px]">
-                  <span className="text-[#765bff] text-4xl font-bold max-md:text-[28px] max-md:leading-[1]">18.27%</span>
+                  <span className="text-[#765bff] text-4xl font-bold max-md:text-[28px] max-md:leading-[1]">~28%</span>
                   <div className="inline-flex items-center gap-1 max-md:gap-[4px]">
                     <span className="text-[#765bff] text-lg max-md:text-[14px] font-bold">APR</span>
                     {infoIconView}
@@ -347,7 +335,7 @@ export default function ThirdSection() {
                   </span>
                   <div className="flex items-center max-md:gap-[2px]">
                     <span className="font-semibold text-sm max-md:leading-[1.5] max-md:text-[12px] text-[#765bff]">
-                      +$630
+                      +$1633
                     </span>
                     <ArrowUp className="w-5 h-5 max-md:w-[14px] max-md:h-[14px] text-[#765bff]" />
                   </div>
