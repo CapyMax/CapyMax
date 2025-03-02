@@ -68,7 +68,6 @@ export function G2Chart({ className, color, fromColor: formColor, toColor }: Pro
 
   useEffect(() => {
     if (!chart.current && container.current) {
-      console.log('renderChart', color, formColor, toColor)
       chart.current = renderChart(container.current, color, formColor, toColor);
     }
   }, [color, formColor, toColor])

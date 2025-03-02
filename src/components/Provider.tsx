@@ -11,6 +11,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 const queryClient = new QueryClient();
 
 const config = createConfig({
+  ssr: true,
   chains: [
     mainnet,
     sepolia,

@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Tooltip } from '@/components/tooltip';
 import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
+import { useAccount, useSignMessage } from 'wagmi';
 import { Button } from './ui/button';
 
 function middleEllipsis(address: string) {
@@ -31,43 +31,78 @@ function NavLink({ children, href }: { children: React.ReactNode; href: string }
   )
 }
 
+function usePoints() {
+  const [points, setPoints] = useState<number | null>(null)
+
+  const { address, isConnected, connector } = useAccount()
+  const { signMessage } = useSignMessage()
+
+  const handleConnect = (options: { address: string, signature: string }) => {
+    const promise = fetch(`http://13.229.134.47:8080/api/wallet/connect`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...options, message: 'hello' })
+    })
+
+    promise
+      .then(res => res.json())
+      .then(data => setPoints(data.user.total_points)) // { user: { total_points: number }, token: string }
+      .catch(() => alert('Failed to connect points'))
+  }
+
+  useEffect(() => {
+    if (isConnected && address) {
+      signMessage(
+        { message: 'hello', connector },
+        {
+          onSuccess: (signature) => handleConnect({ address, signature }),
+          onError: error => alert(error.message)
+        }
+      )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, address])
+
+  return { points, isConnected, address }
+}
+
 function WalletButton() {
   const { openConnectModal } = useConnectModal();
-  const { address, isConnected } = useAccount()
   const { openAccountModal } = useAccountModal();
+  const { points, isConnected, address } = usePoints()
+
+  const rightView = isConnected && address
+    ? (
+      <button
+        className="bg-[#EEF1F3] border border-[#AAB8C1] rounded-[88px] max-md:rounded-[88px] px-4 py-2 max-md:px-[12px] max-md:py-[8px] flex items-center gap-1 text-[#798186] text-[15px] max-md:text-[14px]"
+        onClick={() => openAccountModal?.()}
+      >
+        <span>{middleEllipsis(address)}</span>
+      </button>
+    )
+    : (
+      <Button
+        variant="default"
+        className="bg-[#141414] hover:bg-[#765BFF] rounded-[88px] max-md:rounded-[88px] gap-1 max-md:gap-[4px] h-10 max-md:h-[40px] px-4 max-md:px-[12px]"
+        onClick={() => openConnectModal?.()}
+      >
+        <Image src="/wallet.svg" alt="wallet" className="w-6 h-6 max-md:w-[24px] max-md:h-[24px]" width={24} height={24} />
+        <span className="font-semibold text-xs max-md:text-[12px]">CONNECT WALLET</span>
+      </Button>
+    )
 
   return (
-    <>
-      {/* 积分显示 */}
-      {(isConnected && address) && (
-        <div
-          className="flex items-center gap-[2px] max-md:gap-[4px] bg-[#14141405] border border-[#1414140A] pl-3 max-md:pl-[12px] rounded-[40px] max-md:rounded-[40px] text-[15px] max-md:text-[14px] text-black"
-        >
-          <div className='flex items-center gap-2 font-semibold ml-1 mr-2 max-md:ml-[4px] max-md:mr-[8px]'>
-            <Image src="/points.svg" className='w-[20px] h-[20px] max-md:w-[20px] max-md:h-[20px]' alt="points" width={20} height={20} />
-            <span>Points: -</span>
-          </div>
-          <button
-            className="bg-[#EEF1F3] border border-[#AAB8C1] rounded-[88px] max-md:rounded-[88px] px-4 py-2 max-md:px-[12px] max-md:py-[8px] flex items-center gap-1 text-[#798186] text-[15px] max-md:text-[14px]"
-            onClick={() => openAccountModal?.()}
-          >
-            <span>{middleEllipsis(address)}</span>
-          </button>
-        </div>
-      )}
-
-      {/* 钱包按钮 */}
-      {!isConnected && (
-        <Button
-          variant="default"
-          className="bg-[#141414] hover:bg-[#765BFF] rounded-[88px] max-md:rounded-[88px] gap-1 max-md:gap-[4px] h-10 max-md:h-[40px] px-4 max-md:px-[12px]"
-          onClick={() => openConnectModal?.()}
-        >
-          <Image src="/wallet.svg" alt="wallet" className="w-6 h-6 max-md:w-[24px] max-md:h-[24px]" width={24} height={24} />
-          <span className="font-semibold text-xs max-md:text-[12px]">CONNECT WALLET</span>
-        </Button>
-      )}
-    </>
+    <div
+      className="flex items-center gap-[2px] max-md:gap-[4px] bg-[#14141405] border border-[#1414140A] pl-3 max-md:pl-[12px] rounded-[40px] max-md:rounded-[40px] text-[15px] max-md:text-[14px] text-black"
+    >
+      <div className='flex items-center gap-2 font-semibold ml-1 mr-2 max-md:ml-[4px] max-md:mr-[8px]'>
+        <Image src="/points.svg" className='w-[20px] h-[20px] max-md:w-[20px] max-md:h-[20px]' alt="points" width={20} height={20} />
+        <span>Points: {points ?? '-'}</span>
+      </div>
+      {rightView}
+    </div>
   )
 }
 
@@ -93,7 +128,7 @@ export function NavBarDesktop() {
     : <Image src="/close.svg" alt="close" className='w-[24px] h-[24px] max-md:w-[24px] max-md:h-[24px]' width={24} height={24} onClick={() => setIsOpen(!isOpen)} />
 
   return (
-    <nav className={`fixed top-0 z-30 w-full ${isOpen ? 'max-md:h-dvh' : ''} bg-white`}>
+    <nav className={`sticky top-0 z-30 w-full ${isOpen ? 'max-md:h-dvh' : ''} bg-white`}>
       <div className='h-[72px] max-md:h-[72px] flex justify-between items-center px-20 max-md:px-[32px]'>
         <div className="flex items-center gap-2 max-md:gap-[8px]">
           <Image src="/logo.svg" alt="logo" className='w-[32px] h-[32px] max-md:w-[32px] max-md:h-[32px]' width={32} height={32} />
