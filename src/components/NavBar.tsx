@@ -38,7 +38,7 @@ function usePoints() {
   const { signMessage } = useSignMessage()
 
   const handleConnect = (options: { address: string, signature: string }) => {
-    const promise = fetch(`http://13.229.134.47:8080/api/wallet/connect`, {
+    const promise = fetch(`https://capymaxdev.xyz/api/wallet/connect`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
