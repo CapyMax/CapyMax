@@ -31,6 +31,8 @@ function NavLink({ children, href }: { children: React.ReactNode; href: string }
   )
 }
 
+const message = 'Connect by CapyMax'
+
 function usePoints() {
   const [points, setPoints] = useState<number | null>(null)
 
@@ -43,7 +45,7 @@ function usePoints() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...options, message: 'hello' })
+      body: JSON.stringify({ ...options, message })
     })
 
     promise
@@ -55,7 +57,7 @@ function usePoints() {
   useEffect(() => {
     if (isConnected && address) {
       signMessage(
-        { message: 'hello', connector },
+        { message, connector },
         {
           onSuccess: (signature) => handleConnect({ address, signature }),
           onError: error => alert(error.message)
