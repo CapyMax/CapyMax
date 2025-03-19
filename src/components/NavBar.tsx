@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Tooltip } from '@/components/tooltip';
 import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit';
-import { useAccount, useSignMessage } from 'wagmi';
+import { useAccount, useSignMessage, useAccountEffect } from 'wagmi';
 import { Button } from './ui/button';
 
 function middleEllipsis(address: string) {
@@ -40,8 +40,6 @@ function usePoints() {
   const { signMessage } = useSignMessage()
 
   const handleConnect = (options: { address: string, signature: string }) => {
-    setPoints(null)
-
     const promise = fetch(`https://capymaxpro.xyz/api/wallet/connect`, {
       method: 'POST',
       headers: {
@@ -56,20 +54,22 @@ function usePoints() {
       .catch(() => alert('Failed to connect points'))
   }
 
-  useEffect(() => {
-    if (isConnected && address) {
+  useAccountEffect({
+    onConnect(data) {
       signMessage(
         { message, connector },
         {
-          onSuccess: (signature) => handleConnect({ address, signature }),
+          onSuccess: (signature) => handleConnect({ address: data.address, signature }),
           onError: error => alert(error.message)
         }
       )
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected, address])
+    },
+    onDisconnect() {
+      setPoints(null)
+    },
+  })
 
-  return { points: isConnected ? points : null, isConnected, address }
+  return { points, isConnected, address }
 }
 
 function WalletButton() {
