@@ -40,7 +40,9 @@ function usePoints() {
   const { signMessage } = useSignMessage()
 
   const handleConnect = (options: { address: string, signature: string }) => {
-    const promise = fetch(`https://capymaxdev.xyz/api/wallet/connect`, {
+    setPoints(null)
+
+    const promise = fetch(`https://capymaxpro.xyz/api/wallet/connect`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +69,7 @@ function usePoints() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, address])
 
-  return { points, isConnected, address }
+  return { points: isConnected ? points : null, isConnected, address }
 }
 
 function WalletButton() {
