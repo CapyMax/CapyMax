@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useAccountModal, useConnectModal } from "@rainbow-me/rainbowkit";
@@ -13,15 +14,13 @@ function NavLink({
   children,
   href,
   hasIcon,
-  bgColor,
 }: {
   children: React.ReactNode;
   href: string;
   hasIcon: boolean;
-  bgColor: string | null;
 }) {
+  const isEarnBg = useSelector((state: State) => state.bgHeader);
   const [isHover, setIsHover] = useState(false);
-
   return (
     <>
       {hasIcon ? (
@@ -30,7 +29,7 @@ function NavLink({
           target="_blank"
           rel="noopener noreferrer"
           className={`${
-            bgColor ? "text-white" : "text-black"
+            isEarnBg ? "text-white" : "text-black"
           } px-3 max-md:px-[12px] py-2 max-md:py-[12px] text-[15px] max-md:text-[14px] flex items-center gap-1 max-md:gap-[4px] font-semibold hover:text-[#765BFF]`}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -53,7 +52,7 @@ function NavLink({
         <Link
           href="/earn"
           className={`${
-            bgColor ? "text-white" : "text-black"
+            isEarnBg ? "text-white" : "text-black"
           } px-3 max-md:px-[12px] py-2 max-md:py-[12px] text-[15px] max-md:text-[14px] flex items-center gap-1 max-md:gap-[4px] font-semibold hover:text-[#765BFF]`}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -107,7 +106,8 @@ function usePoints() {
   return { points, isConnected, address };
 }
 
-function WalletButton({ bgColor }: { bgColor: string | null }) {
+function WalletButton() {
+  const isEarnBg = useSelector((state: State) => state.bgHeader);
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
   const { points, isConnected, address } = usePoints();
@@ -149,7 +149,7 @@ function WalletButton({ bgColor }: { bgColor: string | null }) {
           width={20}
           height={20}
         />
-        <span className={`${bgColor ? "text-white" : "text-black"} `}>
+        <span className={`${isEarnBg ? "text-white" : "text-black"} `}>
           Points: {points ?? "-"}
         </span>
       </div>
@@ -158,7 +158,7 @@ function WalletButton({ bgColor }: { bgColor: string | null }) {
   );
 }
 
-function NavLinkItems({ bgColor }: { bgColor: string | null }) {
+function NavLinkItems() {
   return (
     <>
       {/* <Tooltip content={<div className='rounded-full bg-[#F3F5F8] px-3 py-1 text-[12px] font-semibold'>COMING SOON...</div>}>
@@ -166,18 +166,21 @@ function NavLinkItems({ bgColor }: { bgColor: string | null }) {
           EARN
         </a>
       </Tooltip> */}
-      <NavLink href="" hasIcon={false} bgColor={bgColor}>
+      <NavLink href="" hasIcon={false}>
         EARN
       </NavLink>
-      <NavLink href="https://x.com/Capy_Max" hasIcon={true} bgColor={bgColor}>
+      <NavLink href="https://x.com/Capy_Max" hasIcon={true}>
         TWITTER
       </NavLink>
       {/* <Nav href="/">DOC</Nav> */}
     </>
   );
 }
-
-export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
+interface State {
+  bgHeader: boolean;
+}
+export function NavBarDesktop() {
+  const isEarnBg = useSelector((state: State) => state.bgHeader);
   const [isOpen, setIsOpen] = useState(false);
   const menuIcon = !isOpen ? (
     <Image
@@ -202,7 +205,7 @@ export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
   return (
     <nav
       className={`sticky top-0 z-30 w-full ${isOpen ? "max-md:h-dvh" : ""} ${
-        bgColor ? "bg-black" : "bg-white"
+        isEarnBg ? "bg-black" : "bg-white"
       }`}
     >
       <div className="h-[72px] max-md:h-[72px] flex justify-between items-center px-20 max-md:px-[32px]">
@@ -216,7 +219,7 @@ export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
           />
           <span
             className={`${
-              bgColor ? "text-white" : "text-black"
+              isEarnBg ? "text-white" : "text-black"
             } text-black text-xl max-md:text-[22px] font-semibold`}
           >
             CapyMax
@@ -227,8 +230,8 @@ export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
 
         {/* 导航链接 */}
         <div className="flex items-center gap-4 max-md:hidden">
-          <NavLinkItems bgColor={bgColor} />
-          <WalletButton bgColor={bgColor} />
+          <NavLinkItems />
+          <WalletButton />
         </div>
       </div>
 
@@ -236,11 +239,11 @@ export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
       {isOpen && (
         <div className="hidden max-md:flex flex-col max-md:h-[calc(100dvh-72px)]">
           <div className="grow shrink-0 max-md:px-[32px]">
-            <NavLinkItems bgColor={bgColor} />
+            <NavLinkItems />
           </div>
           <div className="flex-0">
             <div className="max-md:mb-[32px] flex justify-center">
-              <WalletButton bgColor={bgColor} />
+              <WalletButton />
             </div>
             <div className="flex justify-center items-center max-md:gap-[20px] max-md:mb-[20px]">
               <div className="max-md:w-[40px] max-md:h-[40px] bg-[#141414] max-md:rounded-[10px] flex items-center justify-center">
@@ -269,6 +272,6 @@ export function NavBarDesktop({ bgColor }: { bgColor: string | null }) {
   );
 }
 
-export function Navbar({ bgColor }: { bgColor: string | null }) {
-  return <NavBarDesktop bgColor={bgColor} />;
+export function Navbar() {
+  return <NavBarDesktop />;
 }

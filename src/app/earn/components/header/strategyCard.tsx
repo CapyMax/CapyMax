@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 export default function StrategyCard() {
@@ -54,7 +55,7 @@ export default function StrategyCard() {
         </div>
         <div>
           <button className="font-[700] mt-[12.8px] w-[100%] rounded-[12.8px] bg-[#765BFF] py-[12.8px] px-[19.2px] cursor-pointer hover:bg-[#765bff] hover:shadow-none  text-[#fff] text-[12.8px]">
-            Earn Now
+            <Link href={"/earn/detail"}> Earn Now</Link>
           </button>
         </div>
       </div>

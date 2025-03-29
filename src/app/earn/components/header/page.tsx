@@ -1,20 +1,14 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import StrategyCard from "./strategyCard";
 import TextInfo from "./textInfo";
-import { BackgroundContext } from "@/app/layout";
-
+import { atEarnPage } from "@/store/slice.ts/page";
 export default function EarnHeader() {
-  const setBackgroundImage = useContext(BackgroundContext);
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log(setBackgroundImage);
-
-    if (!setBackgroundImage) return;
-    setBackgroundImage("true");
-    return () => {
-      setBackgroundImage(null);
-    };
-  }, [setBackgroundImage]);
+    dispatch(atEarnPage());
+  }, []);
   return (
     <div className="bg-[url('/earn-header-bg.png')] h-[304px]  bg-cover bg-center relative">
       <TextInfo></TextInfo>

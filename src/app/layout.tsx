@@ -1,10 +1,12 @@
 "use client";
-import type { Metadata, Viewport } from "next";
-import React, { useState, createContext } from "react";
+// import type { Metadata, Viewport } from "next";
+import React from "react";
+import { Provider as StoreProvider } from "react-redux";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/components/NavBar";
 import Provider from "@/components/Provider";
 import Footer from "@/components/Footer";
+import store from "@/store/page";
 import "./globals.css";
 
 const defaultFont = Inter({
@@ -18,27 +20,20 @@ const defaultFont = Inter({
 // export const viewport: Viewport = {
 //   interactiveWidget: "resizes-content",
 // };
-type BackgroundContextType =
-  | React.Dispatch<React.SetStateAction<string | null>>
-  | undefined;
-export const BackgroundContext =
-  createContext<BackgroundContextType>(undefined);
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [backgroundImage, setBackgroundImage] = useState<string | null>("");
   return (
     <html lang="en">
       <body className={`${defaultFont.className} antialiased`}>
         <Provider>
-          <BackgroundContext.Provider value={setBackgroundImage}>
-            <Navbar bgColor={backgroundImage} />
+          <StoreProvider store={store}>
+            <Navbar />
             {children}
             <Footer />
-          </BackgroundContext.Provider>
+          </StoreProvider>
         </Provider>
       </body>
     </html>
