@@ -94,7 +94,7 @@ function usePoints() {
         {
           onSuccess: (signature) =>
             handleConnect({ address: data.address, signature }),
-          onError: (error) => alert(error.message),
+          onError: (error) => console.log(error.message),
         }
       );
     },

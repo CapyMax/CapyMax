@@ -1,25 +1,47 @@
 import { useState } from "react";
-import { Table } from "antd";
+import Image from "next/image";
 import { Dialog } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import OperationsWithdrawModal from "./operationsCardWithdrawModal";
+import Table from "../components/Table";
+
 export default function OperationsWithdraw() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="min-w-[340px]">
+    <div>
       <div className="flex justify-between mb-[16px] text-[#798186] font-[400] text-[14px]">
         <div>Available</div>
         <div>(仅展示质押满7天资产)</div>
       </div>
       {/*  */}
       <div className="bg-[#F3F5F8] py-[16px] px-[24px] rounded-[16px]">
-        <div className="flex justify-between mb-[8px]">
-          <div>1</div>
-          <div>wbtc</div>
+        <div className="flex justify-between mb-[8px] text-[20px] font-[700]">
+          <div className="text-[#000] ">1</div>
+          <div className="flex items-center">
+            <Image
+              src="/earn-detail-token1.svg"
+              alt="token"
+              width={20}
+              height={20}
+              className="mr-[2px]"
+              style={{ width: "20px", height: "20px" }}
+            />
+            <span className="text-[#141414]">WBTC</span>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <div>1</div>
-          <div>wbtc</div>
+        <div className="flex justify-between text-[20px] font-[700]">
+          <div className="text-[#000]">1</div>
+          <div className="flex items-center">
+            <Image
+              src="/earn-detail-token2.svg"
+              alt="token"
+              width={20}
+              height={20}
+              className="mr-[2px]"
+              style={{ width: "20px", height: "20px" }}
+            />
+            <span className="text-[#141414]">USDC</span>
+          </div>
         </div>
       </div>
       {/*  */}
@@ -28,13 +50,46 @@ export default function OperationsWithdraw() {
       </div>
       {/*  */}
       <div className="bg-[#F3F5F8] py-[16px] px-[24px] rounded-[16px] mb-[16px]">
-        <div className="flex justify-between mb-[8px]">
-          <div>1</div>
-          <div>wbtc</div>
+        <div className="flex justify-between mb-[8px] text-[20px] font-[700]">
+          <div className="text-[#000] ">1</div>
+          <div className="flex items-center">
+            <Image
+              src="/earn-detail-token1.svg"
+              alt="token"
+              width={20}
+              height={20}
+              className="mr-[2px]"
+              style={{ width: "20px", height: "20px" }}
+            />
+            <span className="text-[#141414]">WBTC</span>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <div>1</div>
-          <div>wbtc</div>
+        <div className="flex justify-between text-[20px] font-[700]">
+          <div className="text-[#000]">1</div>
+          <div className="flex items-center">
+            <Image
+              src="/earn-detail-orange.svg"
+              alt="token"
+              width={22}
+              height={22}
+              className="mr-[2px]"
+              style={{ width: "20px", height: "20px" }}
+            />
+            <span
+              className={`
+  text-transparent 
+  bg-gradient-to-bl 
+  from-[#9884FF] 
+  via-[#66CDFF] 
+  to-[#05D394] 
+  bg-clip-text 
+  font-bold 
+  text-2xl
+`}
+            >
+              Capy Point
+            </span>
+          </div>
         </div>
       </div>
       {/*  */}
@@ -52,7 +107,7 @@ export default function OperationsWithdraw() {
       {/*  */}
       <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
         <Dialog.Trigger asChild>
-          <button className="bg-[#141414] rounded-[88px] w-[100%] text-[#fff] h-[40px] font-[600] text-[16px]">
+          <button className="bg-[#141414] rounded-[88px] w-[100%] text-[#fff] h-[40px] font-[600] text-[16px]  mb-[16px]">
             Redeem
           </button>
         </Dialog.Trigger>
@@ -84,26 +139,21 @@ export default function OperationsWithdraw() {
       </Dialog.Root>
 
       <Table
-        className="bg-[#F3F5F8]"
         columns={[
           {
-            title: "Name",
-            dataIndex: "name",
-            key: "name",
-            render: (text) => <a>{text}</a>,
+            title: "test",
+            dataIndex: "test",
           },
         ]}
         dataSource={[
           {
-            key: "1",
-            name: "John Brown",
-            age: 32,
-            address: "New York No. 1 Lake Park",
-            tags: ["nice", "developer"],
+            test: "123",
+          },
+          {
+            test: "1234",
           },
         ]}
-        pagination={false}
-      />
+      ></Table>
     </div>
   );
 }

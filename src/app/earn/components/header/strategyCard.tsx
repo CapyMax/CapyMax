@@ -10,6 +10,7 @@ export default function StrategyCard() {
         className="absolute right-[368px] bottom-[1px] z-10"
         width={90}
         height={90}
+        style={{ width: "90px", height: "90px" }}
       ></Image>
       <Image
         src={"/earn-header-star.svg"}
