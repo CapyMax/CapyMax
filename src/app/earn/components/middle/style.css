@@ -1,0 +1,36 @@
+.PopoverContent {
+    /* 基础样式 */
+    background-color: white;
+    /* 弹窗背景色 */
+    border-radius: 16px;
+    /* 圆角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* 阴影 */
+    padding: 20px;
+    /* 内边距 */
+    overflow: hidden;
+    /* 内容溢出隐藏 */
+    will-change: transform;
+    /* 优化动画性能 */
+
+    /* 动画相关 */
+    transform-origin: center bottom;
+    /* 动画起点：底部中心 */
+    animation: slideIn 0.2s ease-out;
+    /* 使用位移动画替代缩放 */
+}
+
+/* 新的位移动画：从底部滑入 */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px) scale(0.95);
+        /* 初始位置：底部下方 + 稍微缩小 */
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        /* 最终位置：正常位置 */
+        opacity: 1;
+    }
+}
