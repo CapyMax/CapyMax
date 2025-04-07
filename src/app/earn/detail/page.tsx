@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { atHomePage } from "@/store/slice.ts/page";
-import OperationsFn from "./components/operationsCard";
+import OperationsCard from "./components/operationsCard";
 import StrategyCard from "./components/stratrgyCard";
 const EarnDetailPage = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const EarnDetailPage = () => {
   return (
     <div className="px-[80px] bg-[#EEF1F3]">
       <div
-        className="py-[17.5px] flex items-center cursor-pointer"
+        className="py-[17.5px] flex items-center cursor-pointer w-fit"
         onClick={handleBack}
       >
         {" "}
@@ -29,11 +29,14 @@ const EarnDetailPage = () => {
           height={20}
           style={{ width: "20px", height: "20px" }}
         />
-        <span className="text-[#798186] font-[400] text-[14px]"> back</span>
+        <span className="text-[#798186] font-[400] text-[14px]">
+          {" "}
+          back
+        </span>
       </div>
       <div className="flex items-start">
         <StrategyCard></StrategyCard>
-        <OperationsFn></OperationsFn>
+        <OperationsCard></OperationsCard>
       </div>
     </div>
   );

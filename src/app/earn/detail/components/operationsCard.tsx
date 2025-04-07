@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Tabs } from "radix-ui";
 import OperationsDeposit from "./operationsCardDeposit";
 import OperationsWithdraw from "./operationsCardWithdraw";
-export default function OperationsFn() {
+export default function OperationsCard() {
   const [selectedValue, setSelectedValue] = useState("deposit");
   return (
     <div>

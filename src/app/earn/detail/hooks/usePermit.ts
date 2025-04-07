@@ -1,8 +1,7 @@
 
 import { getContract } from 'viem'
 import { WBTC_ABI } from "../utils/abi"
-import { getContractAddress } from '../utils/page'
-import { deadline } from '../utils/data'
+import { getContractAddress, getClientDeadline } from '../utils/page'
 import { useClient } from '../hooks/useClient'
 import { useWallet } from '../hooks/useWallet'
 
@@ -13,6 +12,7 @@ interface Info {
     value: bigint,
 }
 export default function usePermit() {
+    const deadline = getClientDeadline();
     const { getWalletClient, getPublicClient } = useClient()
     const { address } = useWallet()
     const setPermit = async (info: Info) => {

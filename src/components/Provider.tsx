@@ -17,12 +17,13 @@ import {
   sepolia,
   zora,
 } from "viem/chains";
-import { createClient } from "viem";
+
 import "@rainbow-me/rainbowkit/styles.css";
 
 const queryClient = new QueryClient();
 
 const config = createConfig({
+  ssr: true,
   chains: [
     mainnet,
     sepolia,
@@ -36,8 +37,18 @@ const config = createConfig({
     zora,
     blast,
   ],
-  client({ chain }) {
-    return createClient({ chain, transport: http() });
+  transports: {
+    [mainnet.id]: http(),
+    [sepolia.id]: http(),
+    [polygon.id]: http(),
+    [optimism.id]: http(),
+    [arbitrum.id]: http(),
+    [arbitrumSepolia.id]: http(),
+    [base.id]: http(),
+    [bsc.id]: http(),
+    [avalanche.id]: http(),
+    [zora.id]: http(),
+    [blast.id]: http(),
   },
 });
 

@@ -1,40 +1,31 @@
-"use client";
-// import type { Metadata, Viewport } from "next";
+// "use client";
+import type { Metadata, Viewport } from "next";
 import React from "react";
-import { Provider as StoreProvider } from "react-redux";
 import { Inter } from "next/font/google";
-import { Navbar } from "@/components/NavBar";
-import Provider from "@/components/Provider";
-import Footer from "@/components/Footer";
-import store from "@/store/page";
+import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
 const defaultFont = Inter({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "CapyMax",
-// };
+export const metadata: Metadata = {
+  title: "CapyMax",
+};
 
-// export const viewport: Viewport = {
-//   interactiveWidget: "resizes-content",
-// };
+export const viewport: Viewport = {
+  interactiveWidget: "resizes-content",
+};
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`${defaultFont.className} antialiased`}>
-        <Provider>
-          <StoreProvider store={store}>
-            <Navbar />
-            {children}
-            {/* <Footer /> */}
-          </StoreProvider>
-        </Provider>
+        {/* 服务端组件保留metadata和viewport */}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

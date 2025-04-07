@@ -8,7 +8,7 @@ export const parseUSDCAmount = (amount: string): bigint => {
 };
 
 
-export const getContractConfig = (name: keyof typeof CONTRACT_CONFIG) => {
+export const getChainInfo = (name: keyof typeof CONTRACT_CONFIG) => {
     const config = CONTRACT_CONFIG[name];
     if (!config) {
         throw new Error(`Contract config for ${name} not found`);
@@ -22,4 +22,12 @@ export const getContractAddress = (name: keyof typeof CONTRACT_ADDRESS): `0x${st
         throw new Error(`Invalid contract name: ${name}`);
     }
     return address;
+};
+// utils/contract.ts
+export const getClientDeadline = () => {
+    // 确保只在客户端执行
+    if (typeof window === 'undefined') {
+        return BigInt(0); // 服务端返回默认值
+    }
+    return BigInt(Math.floor(Date.now() / 1000) + 3600);
 };

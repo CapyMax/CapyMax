@@ -1,20 +1,39 @@
 import { useState } from "react";
 import Image from "next/image";
-
+import { getContractAddress } from "../utils/page";
+import { SelectTokenInfo } from "../utils/types";
 const TOKEN_OPTIONS = [
-  { icon: "/earn-detail-token1.svg", label: "WBTC", value: "wbtc" },
-  { icon: "/earn-detail-token2.svg", label: "USDC", value: "usdc" },
+  {
+    src: "/earn-detail-token1.svg",
+    label: "WBTC",
+    value: "wbtc",
+    address: getContractAddress("WBTC_MAIN_ADDR"),
+  },
+  {
+    src: "/earn-detail-token2.svg",
+    label: "USDC",
+    value: "usdc",
+    address: getContractAddress("USDC_TEST_ADDR"),
+  },
 ];
-
-export default function TokenSelect() {
+type FetchBalanceFunction = (info: SelectTokenInfo) => void;
+export default function TokenSelect({
+  fetchBalance,
+}: {
+  fetchBalance: FetchBalanceFunction;
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(TOKEN_OPTIONS[0]);
-
+  const [selected, setSelected] = useState<SelectTokenInfo>(TOKEN_OPTIONS[1]);
+  const handleClick = (option: SelectTokenInfo) => {
+    setSelected(option);
+    setIsOpen(false);
+    fetchBalance(option);
+  };
   return (
     <div className="relative">
       <div className="flex items-center ">
         <Image
-          src={selected.icon}
+          src={selected.src}
           alt="token"
           width={20}
           height={20}
@@ -31,7 +50,7 @@ export default function TokenSelect() {
           alt="dropdown"
           width={18}
           height={18}
-          className="cursor-pointer"
+          style={{ cursor: "pointer" }}
           onClick={() => setIsOpen(!isOpen)}
         />
       </div>
@@ -42,13 +61,10 @@ export default function TokenSelect() {
             <div
               key={token.value}
               className="flex items-center gap-1 hover:bg-[#F3F5F8] cursor-pointer py-[8px] px-[20px] box-border rounded-[8px]"
-              onClick={() => {
-                setSelected(token);
-                setIsOpen(false);
-              }}
+              onClick={() => handleClick(token)}
             >
               <Image
-                src={token.icon}
+                src={token.src}
                 alt={token.label}
                 width={20}
                 height={20}

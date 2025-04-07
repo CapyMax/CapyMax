@@ -4,7 +4,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { parseUSDCAmount, getContractConfig } from "../utils/page";
+import { parseUSDCAmount, getChainInfo } from "../utils/page";
 import { ERC20_ABI, TOKEN_MESSENGER_ABI } from "../utils/abi";
 import { CHAIN_IDS } from "../utils/data"
 export default function useCrossChainButton() {
@@ -36,7 +36,7 @@ export default function useCrossChainButton() {
       if (!CHAIN_IDS.includes(chainId)) {
         throw new Error("Please connect to Arbitrum network");
       }
-      const config = getContractConfig(chainId);
+      const config = getChainInfo(chainId);
       const parsedAmount = parseUSDCAmount(amount);
       parsedAmountRef.current = parsedAmount;
       console.log("start approve");
@@ -56,7 +56,7 @@ export default function useCrossChainButton() {
   const handleBurn = useCallback(
     async (parsedAmount: bigint) => {
       try {
-        const config = getContractConfig(chainId);
+        const config = getChainInfo(chainId);
         const formattedAddress = encodeSolanaAddress();
         console.log("satrt writeBurn");
         const tx = await writeBurn({

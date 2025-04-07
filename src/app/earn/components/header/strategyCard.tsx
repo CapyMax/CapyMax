@@ -55,9 +55,12 @@ export default function StrategyCard() {
           strategies.
         </div>
         <div>
-          <button className="font-[700] mt-[12.8px] w-[100%] rounded-[12.8px] bg-[#765BFF] py-[12.8px] px-[19.2px] cursor-pointer hover:bg-[#765bff] hover:shadow-none  text-[#fff] text-[12.8px]">
-            <Link href={"/earn/detail"}> Earn Now</Link>
-          </button>
+          <Link
+            href={"/earn/detail"}
+            className="font-[700] mt-[12.8px] w-[100%] rounded-[12.8px] bg-[#765BFF] py-[12.8px] px-[19.2px] cursor-pointer hover:bg-[#765bff] hover:shadow-none text-[#fff] text-[12.8px] inline-block text-center"
+          >
+            Earn Now
+          </Link>
         </div>
       </div>
     </>

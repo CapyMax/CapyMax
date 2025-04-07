@@ -4,36 +4,35 @@ import Button from "@/components/Button";
 import "./style.css";
 function Tags({ feature }: { feature: string[] }) {
   return (
-    <div className="text-[#765BFF]">
-      <div className="flex items-center gap-1 justify-center  flex-wrap">
-        {feature.map((item, index) => {
-          if (index === 0) {
-            return (
-              <div
-                className="bg-[#F1EFFF] px-[8px] rounded-[4px] py-[6px] flex gap-1 mb-[8px]"
-                key={index}
-              >
-                <Image
-                  src="/earn-market-star.svg"
-                  alt="star"
-                  width={14}
-                  height={14}
-                ></Image>
-                <span>{item} </span>
-              </div>
-            );
-          } else {
-            return (
-              <p
-                className="bg-[#F1EFFF] px-[8px] rounded-[4px] py-[6px] mb-[8px]"
-                key={index}
-              >
-                {item}
-              </p>
-            );
-          }
-        })}
-      </div>
+    <div className="flex gap-1 justify-center content-start flex-wrap text-[#765BFF] mb-[16px] h-[134px]">
+      {feature.map((item, index) => {
+        if (index === 0) {
+          return (
+            <div
+              className="bg-[#F1EFFF] px-[8px] rounded-[4px] py-[6px] flex gap-1 mb-[8px]"
+              key={index}
+            >
+              <Image
+                src="/earn-market-star.svg"
+                alt="star"
+                width={14}
+                height={14}
+                style={{ width: "14px", height: "14px" }}
+              ></Image>
+              <span>{item} </span>
+            </div>
+          );
+        } else {
+          return (
+            <p
+              className="bg-[#F1EFFF] px-[8px] rounded-[4px] py-[6px] mb-[8px]"
+              key={index}
+            >
+              {item}
+            </p>
+          );
+        }
+      })}
     </div>
   );
 }
@@ -173,7 +172,7 @@ export default function MarketMakingCommon({
                   height={14}
                 />
                 <span
-                  key={index}
+                  key={index + 1}
                   className="text-[14px] font-[600]"
                   style={
                     index === 1

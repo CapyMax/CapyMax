@@ -1,9 +1,11 @@
+"use client";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useAccountModal, useConnectModal } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage, useAccountEffect } from "wagmi";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import { Button } from "./ui/button";
 
 function middleEllipsis(address: string) {
@@ -46,6 +48,7 @@ function NavLink({
             }}
             width={16}
             height={16}
+            aria-hidden="true"
           />
         </a>
       ) : (
@@ -68,10 +71,8 @@ const message = "Connect by CapyMax";
 
 function usePoints() {
   const [points, setPoints] = useState<number | null>(null);
-
   const { address, isConnected, connector } = useAccount();
   const { signMessage } = useSignMessage();
-
   const handleConnect = (options: { address: string; signature: string }) => {
     const promise = fetch(`https://capymaxpro.xyz/api/wallet/connect`, {
       method: "POST",
@@ -107,6 +108,7 @@ function usePoints() {
 }
 
 function WalletButton() {
+  const mounted = useIsMounted();
   const isEarnBg = useSelector((state: State) => state.bgHeader);
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
@@ -153,7 +155,8 @@ function WalletButton() {
           Points: {points ?? "-"}
         </span>
       </div>
-      {rightView}
+      {/* {rightView} */}
+      {mounted ? rightView : null}
     </div>
   );
 }
@@ -213,9 +216,10 @@ export function NavBarDesktop() {
           <Image
             src="/logo.svg"
             alt="logo"
-            className="w-[32px] h-[32px] max-md:w-[32px] max-md:h-[32px]"
+            className="w-[32px] h-[32px] max-md:w-[32px] max-md:h-[32px] cursor-pointer"
             width={32}
             height={32}
+            onClick={() => (window.location.href = "/")}
           />
           <span
             className={`${

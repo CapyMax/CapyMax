@@ -1,6 +1,6 @@
 import { parseSignature } from 'viem'
 import { WBTC_ABI } from "../utils/abi"
-import { deadline } from "../utils/data"
+import { getClientDeadline } from '../utils/page'
 import { useClient } from '../hooks/useClient'
 import { useWallet } from '../hooks/useWallet'
 type PermitSignature = {
@@ -10,6 +10,7 @@ type PermitSignature = {
 }
 
 export default function useSignature() {
+    const deadline = getClientDeadline();
     const { getWalletClient, getPublicClient } = useClient()
     const { address } = useWallet()
 

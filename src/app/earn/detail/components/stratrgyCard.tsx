@@ -54,6 +54,7 @@ export default function StrategyCard() {
                 alt="plus icon"
                 width={16}
                 height={16}
+                style={{ width: "16px", height: "16px" }}
               />
               <span>Additional Capital Efficiency</span>
             </div>

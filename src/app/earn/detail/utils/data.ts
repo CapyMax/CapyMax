@@ -11,7 +11,6 @@ export const CONTRACT_ADDRESS = {
     MAIN_ADDR: "0xcc175f87bafb29e1d927528b6f93b0432af0e15a",
 } as const;
 
-export const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600)
 
 type ContractConfig = {
     tokenMessenger: `0x${string}`;
