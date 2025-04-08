@@ -4,49 +4,37 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { parseUSDCAmount, getChainInfo } from "../utils/page";
+import { getChainInfo } from "../utils/page";
 import { ERC20_ABI, TOKEN_MESSENGER_ABI } from "../utils/abi";
-import { CHAIN_IDS } from "../utils/data"
+import { CHAIN_IDS } from "../utils/data";
 export default function useCrossChainButton() {
   const { chainId = 0 } = useAccount();
-
-
-  const {
-    writeContract: writeApprove,
-    data: approveHash,
-  } = useWriteContract();
-
-  const {
-    writeContract: writeBurn,
-  } = useWriteContract();
-
+  const { writeContract: writeApprove, data: approveHash } = useWriteContract();
+  const { writeContract: writeBurn } = useWriteContract();
   const { isLoading: isConfirmingApprove } = useWaitForTransactionReceipt({
     hash: approveHash,
   });
   const parsedAmountRef = useRef(BigInt(0));
-
   useEffect(() => {
     if (approveHash && !isConfirmingApprove) {
       handleBurn(parsedAmountRef.current);
     }
   }, [approveHash, isConfirmingApprove]);
 
-  const handleCrossChain = async (amount: string) => {
+  const setCrossChain = async (amount: bigint) => {
     try {
       if (!CHAIN_IDS.includes(chainId)) {
         throw new Error("Please connect to Arbitrum network");
       }
       const config = getChainInfo(chainId);
-      const parsedAmount = parseUSDCAmount(amount);
-      parsedAmountRef.current = parsedAmount;
-      console.log("start approve");
-      const tx = await writeApprove({
+      parsedAmountRef.current = amount;
+      await writeApprove({
         address: config.usdc as `0x${string}`,
         abi: ERC20_ABI,
         functionName: "approve",
-        args: [config.tokenMessenger as `0x${string}`, parsedAmount],
+        args: [config.tokenMessenger as `0x${string}`, amount],
       });
-      console.log("tx", tx);
+      console.log("writeApprove end");
     } catch (error) {
       console.error("writeApprove failed:", error);
       alert(error instanceof Error ? error.message : "Unknown error");
@@ -58,8 +46,7 @@ export default function useCrossChainButton() {
       try {
         const config = getChainInfo(chainId);
         const formattedAddress = encodeSolanaAddress();
-        console.log("satrt writeBurn");
-        const tx = await writeBurn({
+        await writeBurn({
           address: config.tokenMessenger as `0x${string}`,
           abi: TOKEN_MESSENGER_ABI,
           functionName: "depositForBurn",
@@ -70,7 +57,7 @@ export default function useCrossChainButton() {
             config.usdc as `0x${string}`,
           ],
         });
-        console.log("tx", tx);
+        console.log("writeBurn end");
       } catch (error) {
         console.error("writeBurn failed:", error);
       }
@@ -87,6 +74,6 @@ export default function useCrossChainButton() {
     return `0x${hex.padEnd(64, "0")}` as `0x${string}`;
   };
   return {
-    handleCrossChain,
+    setCrossChain,
   };
 }

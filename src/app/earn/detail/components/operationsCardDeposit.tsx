@@ -3,27 +3,28 @@ import { arbitrumSepolia } from "viem/chains";
 import { useBalance } from "wagmi";
 import Row from "./Row";
 import useSignature from "../hooks/useSignature";
-import usePermit from "../hooks/usePermit";
 import { useWallet } from "../hooks/useWallet";
 import useCrossChainButton from "../hooks/useCrossChain";
-import { getContractAddress } from "../utils/page";
+import { useIsMounted } from "@/hooks/useIsMounted";
+import { useDeposit } from "../hooks/useDeposit";
+import { getContractAddress, getClientDeadline } from "../utils/page";
 import { RsvInfo } from "../utils/types";
 import { SelectTokenInfo } from "../utils/types";
-import { useIsMounted } from "@/hooks/useIsMounted";
 import TokenSelect from "./TokenSelect";
 import Table from "../components/Table";
 import Button from "@/components/Button";
 
 export default function OperationsDeposit() {
-  const { handleCrossChain } = useCrossChainButton();
+  const { setCrossChain } = useCrossChainButton();
   const { setSignature } = useSignature();
-  const { setPermit } = usePermit();
+  const { setDeposit, depositId, amount } = useDeposit();
   const { isConnected, address } = useWallet();
   const [depositValue, setDepositValue] = useState("");
   const [selectedToken, setSelectedToken] = useState<SelectTokenInfo>({
     src: "/earn-detail-token2.svg",
     label: "USDC",
-    value: "usdc",
+    value: 1,
+    decimal: 6,
     address: getContractAddress("USDC_TEST_ADDR"),
   });
   const isMounted = useIsMounted();
@@ -35,8 +36,6 @@ export default function OperationsDeposit() {
       enabled: !!address,
     },
   });
-  console.log("balanceData", balanceData);
-
   const fetchBalance = (info: SelectTokenInfo) => {
     setSelectedToken(info);
   };
@@ -49,16 +48,15 @@ export default function OperationsDeposit() {
   const hasSufficientBalance =
     balanceData && Number(depositValue) <= Number(balanceData.formatted);
   const disDeposit = !isConnected || !isInputValid || !hasSufficientBalance;
-  // 修改类名逻辑，服务端渲染时使用默认值
+
   const buttonClassName = isMounted
     ? isConnected
       ? disDeposit
         ? "bg-[#FF8064]"
         : "bg-[#141414]"
       : "bg-[#AAB8C1]"
-    : "bg-[#AAB8C1]"; // 服务端始终使用未连接状态的类名
+    : "bg-[#AAB8C1]";
 
-  // 修改文本逻辑，服务端渲染时使用默认值
   const buttonText = isMounted
     ? isConnected
       ? isInputValid
@@ -67,7 +65,7 @@ export default function OperationsDeposit() {
           : "Insufficient balance"
         : "Minimum deposit: 100U"
       : "Deposit"
-    : "Deposit"; // 服务端始终显示 "Deposit"
+    : "Deposit";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
@@ -76,40 +74,44 @@ export default function OperationsDeposit() {
 
   const handleSignature = async () => {
     try {
-      console.log("start handleSignature", handleSignature);
-      const rsvInfo: RsvInfo = await setSignature(
-        getContractAddress("USDC_TEST_ADDR"),
+      const rsvInfo = await setSignature(
+        getContractAddress(
+          selectedToken.value ? "USDC_TEST_ADDR" : "WBTC_MAIN_ADDR"
+        ),
         getContractAddress("MAIN_ADDR"),
-        "1",
-        8,
+        depositValue,
+        selectedToken.decimal,
         arbitrumSepolia.id
       );
-      console.log("rsvInfo", rsvInfo);
       return rsvInfo;
     } catch (error) {
       console.log("error in setSignature:", error);
     }
   };
-  const handlePermit = async (rsv: RsvInfo) => {
-    try {
-      const resContract = await setPermit({
-        ...rsv,
-        value: BigInt(depositValue),
-      });
-      console.log("resContract", resContract);
-    } catch (error) {
-      console.log("error in setPermitFn:", error);
-    }
-  };
-  const handleDeposit = async () => {
-    if (!isConnected) {
-      throw new Error("请连接钱包后操作");
-    }
-    console.log(" start handleDeposit", handleDeposit);
 
-    const latestRsv = await handleSignature();
-    await handlePermit(latestRsv as RsvInfo);
-    handleCrossChain(depositValue);
+  const deadline = getClientDeadline();
+
+  const handleDeposit = async () => {
+    try {
+      if (!isConnected) {
+        throw new Error("请连接钱包后操作");
+      }
+      const latestRsv = await handleSignature();
+      if (!latestRsv) return;
+      await setDeposit({
+        tokenType: selectedToken.value,
+        amount: BigInt(depositValue) * BigInt(10 ** selectedToken.decimal),
+        referralCode: 0,
+        deadline: deadline,
+        ...(latestRsv as RsvInfo),
+      });
+      await setCrossChain(amount);
+    } catch (error) {
+      console.error(
+        "操作失败:",
+        error instanceof Error ? error.message : error
+      );
+    }
   };
   return (
     <div>

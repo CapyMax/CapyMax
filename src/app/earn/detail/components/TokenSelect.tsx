@@ -6,13 +6,15 @@ const TOKEN_OPTIONS = [
   {
     src: "/earn-detail-token1.svg",
     label: "WBTC",
-    value: "wbtc",
+    value: 0,
+    decimal: 8,
     address: getContractAddress("WBTC_MAIN_ADDR"),
   },
   {
     src: "/earn-detail-token2.svg",
     label: "USDC",
-    value: "usdc",
+    value: 1,
+    decimal: 6,
     address: getContractAddress("USDC_TEST_ADDR"),
   },
 ];
