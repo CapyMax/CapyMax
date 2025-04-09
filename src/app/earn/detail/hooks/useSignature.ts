@@ -1,87 +1,75 @@
 import { parseSignature, recoverTypedDataAddress } from "viem";
-import { USDC_ABI } from "../utils/abi";
 import { getClientDeadline } from "../utils/page";
+import { PERMIT_TYPES, ValidTokenType } from "../utils/data";
+import { PermitSignature } from "../utils/types";
 import { useClient } from "../hooks/useClient";
 import { useWallet } from "../hooks/useWallet";
-type PermitSignature = {
-  v: bigint;
-  r: `0x${string}`;
-  s: `0x${string}`;
-};
+import { getChainInfo, getTokenInfo } from "../utils/page";
 
-export default function useSignature() {
+export function useSignature() {
   const deadline = getClientDeadline();
   const { getWalletClient, getPublicClient } = useClient();
-  const { address } = useWallet();
+  const { address, chainId = 42161 } = useWallet();
 
-  const types = {
-    Permit: [
-      { name: "owner", type: "address" },
-      { name: "spender", type: "address" },
-      { name: "value", type: "uint256" },
-      { name: "nonce", type: "uint256" },
-      { name: "deadline", type: "uint256" },
-    ],
-  };
   const setSignature = async (
-    tokenAddress: `0x${string}`,
-    spender: `0x${string}`,
-    value: string,
-    decimals: number,
-    chainId: number
+    amount: string,
+    tokenType: ValidTokenType
   ): Promise<PermitSignature | null> => {
     try {
+      const info = getChainInfo(chainId);
+      const spender = info.main;
+      const tokenInfo = getTokenInfo(tokenType);
+      const tokenAddress = tokenType ? info.usdc : info.wbtc;
+      const abi = tokenInfo.abi;
+      const decimal = tokenInfo.decimal;
+      const version = tokenInfo.version;
+
       const walletClient = getWalletClient();
       const publicClient = getPublicClient();
       if (!walletClient || !address) {
         throw new Error("请先连接钱包");
       }
-      const tokenName = (await publicClient.readContract({
-        address: tokenAddress,
-        abi: [
-          {
-            name: "name",
-            type: "function",
-            stateMutability: "view",
-            inputs: [],
-            outputs: [{ type: "string" }],
-          },
-        ],
-        functionName: "name",
-      })) as string;
 
-      const nonce = (await publicClient.readContract({
-        address: tokenAddress,
-        abi: USDC_ABI,
-        functionName: "nonces",
-        args: [address],
-      })) as bigint;
+      const [tokenName, nonce] = await Promise.all([
+        publicClient.readContract({
+          address: tokenAddress,
+          abi,
+          functionName: "name",
+        }) as Promise<string>,
+        publicClient.readContract({
+          address: tokenAddress,
+          abi,
+          functionName: "nonces",
+          args: [address],
+        }),
+      ]);
 
-      const domain = {
+      const DOMAIN = {
         name: tokenName,
-        version: "2",
+        version,
         chainId,
         verifyingContract: tokenAddress,
       };
+      const value = BigInt(amount) * BigInt(10 ** decimal);
       const message = {
         owner: address,
         spender,
-        value: BigInt(value) * BigInt(10 ** decimals),
+        value,
         nonce,
         deadline,
       };
 
       const signature = await walletClient.signTypedData({
         account: address,
-        domain,
-        types,
+        domain: DOMAIN,
+        types: PERMIT_TYPES,
         primaryType: "Permit",
         message,
       });
 
       const recoveredAddress = await recoverTypedDataAddress({
-        domain,
-        types,
+        domain: DOMAIN,
+        types: PERMIT_TYPES,
         primaryType: "Permit",
         message,
         signature,
@@ -90,8 +78,6 @@ export default function useSignature() {
         const rsvInfo = parseSignature(signature) as PermitSignature;
         return rsvInfo;
       }
-      console.log("recoveredAddress:", recoveredAddress);
-
       return null;
     } catch (error) {
       console.error("Error in setSignature:", error);

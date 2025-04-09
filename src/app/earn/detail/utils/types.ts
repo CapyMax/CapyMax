@@ -10,10 +10,19 @@ export interface SelectTokenInfo {
   address: string;
   decimal: number;
 }
-enum TokenType {
-  TYPE_1 = 0,
-  TYPE_2 = 1,
+/**
+ * . `tokenType`: 代币类型（0: WBTC, 1: USDC）
+ */
+export enum TokenType {
+  TYPE_0 = 0,
+  TYPE_1 = 1,
 }
+export type ContractConfig = {
+  main: `0x${string}`;
+  usdc: `0x${string}`;
+  wbtc: `0x${string}`;
+  chainId: 421614 | 42161;
+};
 export interface DepositInfo {
   tokenType: TokenType;
   amount: bigint;
@@ -36,3 +45,8 @@ export interface Decoded {
       }
     | undefined;
 }
+export type PermitSignature = {
+  v: bigint;
+  r: `0x${string}`;
+  s: `0x${string}`;
+};

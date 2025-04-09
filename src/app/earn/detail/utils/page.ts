@@ -1,4 +1,11 @@
-import { CONTRACT_CONFIG, CONTRACT_ADDRESS } from "./data";
+import {
+  CONTRACT_CONFIG,
+  CONTRACT_ADDRESS,
+  TOKEN_INFO,
+  CONFIG_NUMBER,
+  ValidTokenType,
+} from "./data";
+
 export const parseUSDCAmount = (amount: string): bigint => {
   const [integer, decimal = ""] = amount.split(".");
   const trimmedDecimal = decimal.slice(0, 6); // 保留最多6位小数
@@ -9,11 +16,13 @@ export const parseUSDCAmount = (amount: string): bigint => {
 export const getChainInfo = (name: keyof typeof CONTRACT_CONFIG) => {
   const config = CONTRACT_CONFIG[name];
   if (!config) {
-    return CONTRACT_CONFIG[42161];
+    return CONTRACT_CONFIG[CONFIG_NUMBER["arbitrumOne"]];
   }
   return config;
 };
-
+export const getTokenInfo = (tokenType: ValidTokenType) => {
+  return TOKEN_INFO[tokenType];
+};
 export const getContractAddress = (
   name: keyof typeof CONTRACT_ADDRESS
 ): `0x${string}` => {
@@ -23,11 +32,10 @@ export const getContractAddress = (
   }
   return address;
 };
-// utils/contract.ts
+
 export const getClientDeadline = () => {
-  // 确保只在客户端执行
   if (typeof window === "undefined") {
-    return BigInt(0); // 服务端返回默认值
+    return BigInt(0);
   }
   return BigInt(Math.floor(Date.now() / 1000) + 3600);
 };

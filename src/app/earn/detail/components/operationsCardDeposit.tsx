@@ -1,41 +1,51 @@
-import React, { useState } from "react";
-import { arbitrumSepolia } from "viem/chains";
+import React, { useEffect, useState } from "react";
 import { useBalance } from "wagmi";
-import Row from "./Row";
-import useSignature from "../hooks/useSignature";
+import { Toast } from "radix-ui";
+import { useSignature } from "../hooks/useSignature";
 import { useWallet } from "../hooks/useWallet";
-import useCrossChainButton from "../hooks/useCrossChain";
+import { useCrossChainButton } from "../hooks/useCrossChain";
 import { useIsMounted } from "@/hooks/useIsMounted";
 import { useDeposit } from "../hooks/useDeposit";
-import { getContractAddress, getClientDeadline } from "../utils/page";
-import { RsvInfo } from "../utils/types";
-import { SelectTokenInfo } from "../utils/types";
+import { useSwitchChain } from "../hooks/useSwitchChain";
+import { getClientDeadline } from "../utils/page";
+import { RsvInfo, SelectTokenInfo } from "../utils/types";
+import { CHAIN_IDS } from "../utils/data";
 import TokenSelect from "./TokenSelect";
 import Table from "../components/Table";
 import Button from "@/components/Button";
-
+import Row from "./Row";
 export default function OperationsDeposit() {
   const { setCrossChain } = useCrossChainButton();
   const { setSignature } = useSignature();
-  const { setDeposit, depositId, amount } = useDeposit();
-  const { isConnected, address } = useWallet();
+  const { setDeposit, amount } = useDeposit();
+  const { isConnected, address, chainId } = useWallet();
   const [depositValue, setDepositValue] = useState("");
+  const { addressInfo } = useSwitchChain();
   const [selectedToken, setSelectedToken] = useState<SelectTokenInfo>({
     src: "/earn-detail-token2.svg",
     label: "USDC",
+    address: addressInfo.usdc || "",
     value: 1,
     decimal: 6,
-    address: getContractAddress("USDC_TEST_ADDR"),
   });
+  useEffect(() => {
+    if (!CHAIN_IDS.includes(chainId || 42161)) return;
+    setSelectedToken((pre) => ({
+      ...pre,
+      address: pre.value ? addressInfo.usdc : addressInfo.wbtc,
+    }));
+  }, [addressInfo, chainId]);
+
   const isMounted = useIsMounted();
   const { data: balanceData } = useBalance({
-    address: address,
-    chainId: arbitrumSepolia.id,
+    address,
+    chainId,
     token: selectedToken.address as `0x${string}`,
     query: {
-      enabled: !!address,
+      enabled: !!address && !!chainId && !!selectedToken.address,
     },
   });
+
   const fetchBalance = (info: SelectTokenInfo) => {
     setSelectedToken(info);
   };
@@ -74,15 +84,7 @@ export default function OperationsDeposit() {
 
   const handleSignature = async () => {
     try {
-      const rsvInfo = await setSignature(
-        getContractAddress(
-          selectedToken.value ? "USDC_TEST_ADDR" : "WBTC_MAIN_ADDR"
-        ),
-        getContractAddress("MAIN_ADDR"),
-        depositValue,
-        selectedToken.decimal,
-        arbitrumSepolia.id
-      );
+      const rsvInfo = await setSignature(depositValue, selectedToken.value);
       return rsvInfo;
     } catch (error) {
       console.log("error in setSignature:", error);
@@ -105,7 +107,8 @@ export default function OperationsDeposit() {
         deadline: deadline,
         ...(latestRsv as RsvInfo),
       });
-      await setCrossChain(amount);
+      fetchBalance(selectedToken);
+      await setCrossChain(amount as bigint);
     } catch (error) {
       console.error(
         "操作失败:",

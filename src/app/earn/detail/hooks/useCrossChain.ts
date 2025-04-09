@@ -6,9 +6,8 @@ import {
 } from "wagmi";
 import { getChainInfo } from "../utils/page";
 import { ERC20_ABI, TOKEN_MESSENGER_ABI } from "../utils/abi";
-import { CHAIN_IDS } from "../utils/data";
-export default function useCrossChainButton() {
-  const { chainId = 0 } = useAccount();
+export function useCrossChainButton() {
+  const { chainId = 42161 } = useAccount();
   const { writeContract: writeApprove, data: approveHash } = useWriteContract();
   const { writeContract: writeBurn } = useWriteContract();
   const { isLoading: isConfirmingApprove } = useWaitForTransactionReceipt({
@@ -23,16 +22,13 @@ export default function useCrossChainButton() {
 
   const setCrossChain = async (amount: bigint) => {
     try {
-      if (!CHAIN_IDS.includes(chainId)) {
-        throw new Error("Please connect to Arbitrum network");
-      }
       const config = getChainInfo(chainId);
       parsedAmountRef.current = amount;
       await writeApprove({
         address: config.usdc as `0x${string}`,
         abi: ERC20_ABI,
         functionName: "approve",
-        args: [config.tokenMessenger as `0x${string}`, amount],
+        args: [config.main as `0x${string}`, amount],
       });
       console.log("writeApprove end");
     } catch (error) {
@@ -47,7 +43,7 @@ export default function useCrossChainButton() {
         const config = getChainInfo(chainId);
         const formattedAddress = encodeSolanaAddress();
         await writeBurn({
-          address: config.tokenMessenger as `0x${string}`,
+          address: config.main as `0x${string}`,
           abi: TOKEN_MESSENGER_ABI,
           functionName: "depositForBurn",
           args: [

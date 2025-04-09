@@ -2,20 +2,22 @@ import { decodeEventLog } from "viem";
 import { useClient } from "../hooks/useClient";
 import { Strategy_Engine_ABI } from "../utils/abi";
 import { useWallet } from "../hooks/useWallet";
-import { getContractAddress } from "../utils/page";
+import { getChainInfo } from "../utils/page";
 import { DepositInfo, Decoded } from "../utils/types";
+import { CONFIG_NUMBER } from "../utils/data";
 export function useDeposit() {
   const { getWalletClient, getPublicClient } = useClient();
   const walletClient = getWalletClient();
   const publicClient = getPublicClient();
   const { address } = useWallet();
+  const main_addr = getChainInfo(CONFIG_NUMBER["arbitrumSepolia"]).main;
   let gas = BigInt(3000);
   let depositId: string | undefined;
   let amount: bigint | undefined;
   const setDeposit = async (depositInfo: DepositInfo) => {
     try {
       gas = await publicClient.estimateContractGas({
-        address: getContractAddress("MAIN_ADDR"),
+        address: main_addr,
         abi: Strategy_Engine_ABI,
         functionName: "deposit",
         args: [
@@ -36,7 +38,7 @@ export function useDeposit() {
     try {
       if (!walletClient) return;
       const { request } = await publicClient.simulateContract({
-        address: getContractAddress("MAIN_ADDR"),
+        address: main_addr,
         abi: Strategy_Engine_ABI,
         functionName: "deposit",
         args: [
@@ -61,10 +63,7 @@ export function useDeposit() {
       if (receipt.logs.length > 0) {
         for (const log of receipt.logs) {
           try {
-            if (
-              log.address.toLowerCase() !==
-              getContractAddress("MAIN_ADDR").toLowerCase()
-            ) {
+            if (log.address.toLowerCase() !== main_addr.toLowerCase()) {
               continue;
             }
             const decoded = decodeEventLog({

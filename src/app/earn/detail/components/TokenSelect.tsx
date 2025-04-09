@@ -1,36 +1,43 @@
 import { useState } from "react";
 import Image from "next/image";
-import { getContractAddress } from "../utils/page";
-import { SelectTokenInfo } from "../utils/types";
-const TOKEN_OPTIONS = [
-  {
-    src: "/earn-detail-token1.svg",
-    label: "WBTC",
-    value: 0,
-    decimal: 8,
-    address: getContractAddress("WBTC_MAIN_ADDR"),
-  },
-  {
-    src: "/earn-detail-token2.svg",
-    label: "USDC",
-    value: 1,
-    decimal: 6,
-    address: getContractAddress("USDC_TEST_ADDR"),
-  },
-];
+import { getTokenInfo } from "../utils/page";
+import { SelectTokenInfo, TokenType } from "../utils/types";
+import { CONFIG_NUMBER } from "../utils/data";
+import { useSwitchChain } from "../hooks/useSwitchChain";
+
 type FetchBalanceFunction = (info: SelectTokenInfo) => void;
 export default function TokenSelect({
   fetchBalance,
 }: {
   fetchBalance: FetchBalanceFunction;
 }) {
+  const { addressInfo } = useSwitchChain();
+  const usdc_info = getTokenInfo(CONFIG_NUMBER["usdc"]);
+  const wbtc_info = getTokenInfo(CONFIG_NUMBER["wbtc"]);
+  const TOKEN_OPTIONS = [
+    {
+      src: "/earn-detail-token2.svg",
+      label: "USDC",
+      address: addressInfo.usdc,
+      value: TokenType.TYPE_1,
+      decimal: usdc_info.decimal,
+    },
+    {
+      src: "/earn-detail-token1.svg",
+      label: "WBTC",
+      address: addressInfo.wbtc,
+      value: TokenType.TYPE_0,
+      decimal: wbtc_info.decimal,
+    },
+  ];
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<SelectTokenInfo>(TOKEN_OPTIONS[1]);
+  const [selected, setSelected] = useState<SelectTokenInfo>(TOKEN_OPTIONS[0]);
   const handleClick = (option: SelectTokenInfo) => {
     setSelected(option);
     setIsOpen(false);
     fetchBalance(option);
   };
+
   return (
     <div className="relative">
       <div className="flex items-center ">
