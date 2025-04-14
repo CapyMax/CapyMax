@@ -18,6 +18,7 @@ export enum TokenType {
   TYPE_1 = 1,
 }
 export type ContractConfig = {
+  tokenMessage: `0x${string}`;
   main: `0x${string}`;
   usdc: `0x${string}`;
   wbtc: `0x${string}`;

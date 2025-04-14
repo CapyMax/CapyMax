@@ -3,7 +3,7 @@ import { useBalance } from "wagmi";
 import { Toast } from "radix-ui";
 import { useSignature } from "../hooks/useSignature";
 import { useWallet } from "../hooks/useWallet";
-import { useCrossChainButton } from "../hooks/useCrossChain";
+import { useApproveForBurn } from "../hooks/useApproveForBurn";
 import { useIsMounted } from "@/hooks/useIsMounted";
 import { useDeposit } from "../hooks/useDeposit";
 import { useSwitchChain } from "../hooks/useSwitchChain";
@@ -14,8 +14,9 @@ import TokenSelect from "./TokenSelect";
 import Table from "../components/Table";
 import Button from "@/components/Button";
 import Row from "./Row";
+import "./toast.css";
 export default function OperationsDeposit() {
-  const { setCrossChain } = useCrossChainButton();
+  const { setApproveForBurn } = useApproveForBurn();
   const { setSignature } = useSignature();
   const { setDeposit, amount } = useDeposit();
   const { isConnected, address, chainId } = useWallet();
@@ -28,8 +29,14 @@ export default function OperationsDeposit() {
     value: 1,
     decimal: 6,
   });
+  const [chainErrorShown, setChainErrorShown] = useState(false);
+
   useEffect(() => {
-    if (!CHAIN_IDS.includes(chainId || 42161)) return;
+    const isValidChain = CHAIN_IDS.includes(chainId || 42161);
+    if (!isValidChain) {
+      if (!chainErrorShown) setChainErrorShown(true);
+      return;
+    }
     setSelectedToken((pre) => ({
       ...pre,
       address: pre.value ? addressInfo.usdc : addressInfo.wbtc,
@@ -98,17 +105,18 @@ export default function OperationsDeposit() {
       if (!isConnected) {
         throw new Error("请连接钱包后操作");
       }
+      const depositAndCrossAmount =
+        BigInt(depositValue) * BigInt(10 ** selectedToken.decimal);
       const latestRsv = await handleSignature();
       if (!latestRsv) return;
       await setDeposit({
         tokenType: selectedToken.value,
-        amount: BigInt(depositValue) * BigInt(10 ** selectedToken.decimal),
+        amount: depositAndCrossAmount,
         referralCode: 0,
         deadline: deadline,
         ...(latestRsv as RsvInfo),
       });
       fetchBalance(selectedToken);
-      await setCrossChain(amount as bigint);
     } catch (error) {
       console.error(
         "操作失败:",
@@ -116,8 +124,32 @@ export default function OperationsDeposit() {
       );
     }
   };
+  useEffect(() => {
+    if (amount) {
+      console.log("amount to setApproveForBurn", amount);
+      setApproveForBurn(amount as bigint);
+    }
+  }, [amount]);
   return (
     <div>
+      <Toast.Provider swipeDirection="up">
+        <Toast.Root
+          className="ToastRoot"
+          open={chainErrorShown}
+          duration={3000}
+          onOpenChange={(open) => setChainErrorShown(open)}
+        >
+          <Toast.Description asChild onClick={() => setChainErrorShown(false)}>
+            <time className="ToastDescription">please switch to Arbitrum</time>
+          </Toast.Description>
+          <Toast.Action
+            asChild
+            altText="Goto schedule to undo"
+            onClick={() => setChainErrorShown(false)}
+          ></Toast.Action>
+        </Toast.Root>
+        <Toast.Viewport className="fixed top-20 right-0" />
+      </Toast.Provider>
       <div className="rounded-[16px] bg-[#F3F5F8] py-[16px] px-[24px] mb-[16px]">
         <div className="flex items-center">
           <input

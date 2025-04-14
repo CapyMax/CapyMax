@@ -1,19 +1,20 @@
+import { useState } from "react";
 import { decodeEventLog } from "viem";
-import { useClient } from "../hooks/useClient";
+import { useClient } from "./useClient";
 import { Strategy_Engine_ABI } from "../utils/abi";
-import { useWallet } from "../hooks/useWallet";
+import { useWallet } from "./useWallet";
 import { getChainInfo } from "../utils/page";
 import { DepositInfo, Decoded } from "../utils/types";
-import { CONFIG_NUMBER } from "../utils/data";
 export function useDeposit() {
   const { getWalletClient, getPublicClient } = useClient();
   const walletClient = getWalletClient();
   const publicClient = getPublicClient();
-  const { address } = useWallet();
-  const main_addr = getChainInfo(CONFIG_NUMBER["arbitrumSepolia"]).main;
+  const { address, chainId } = useWallet();
+  const [depositId, setDepositId] = useState<string | undefined>();
+  const [amount, setAmount] = useState<bigint | undefined>();
+  const main_addr = getChainInfo(chainId || 42161).main;
   let gas = BigInt(3000);
-  let depositId: string | undefined;
-  let amount: bigint | undefined;
+
   const setDeposit = async (depositInfo: DepositInfo) => {
     try {
       gas = await publicClient.estimateContractGas({
@@ -56,6 +57,7 @@ export function useDeposit() {
         ...request,
         gas,
       });
+      console.log("transactionHash:", transactionHash);
       const receipt = await publicClient.waitForTransactionReceipt({
         hash: transactionHash,
       });
@@ -74,8 +76,15 @@ export function useDeposit() {
             }) as Decoded;
 
             if (decoded && decoded.eventName === "Deposited" && decoded.args) {
-              depositId = decoded.args.depositId;
-              amount = decoded.args.amount;
+              setDepositId(decoded.args.depositId);
+              setAmount(decoded.args.amount);
+              console.log(
+                "depositId",
+                decoded.args.depositId,
+                "amount",
+                decoded.args.amount
+              );
+              //0xda60a9ac094b218587126b8d490e9b6c91840708823df491db2939c23ac1bd8b
               break;
             }
           } catch (error) {

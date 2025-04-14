@@ -21,13 +21,15 @@ export const CONTRACT_ADDRESS = {
 
 export const CONTRACT_CONFIG: Record<number, ContractConfig> = {
   [CONFIG_NUMBER["arbitrumSepolia"]]: {
+    tokenMessage: "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5",
     main: "0x4cdDd987EB7C2D23364c67eaF76A612E519906BC",
     usdc: "0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d",
     wbtc: "0x3f770Ac673856F105b586bb393d122721265aD46",
     chainId: arbitrumSepolia.id,
   },
   [CONFIG_NUMBER["arbitrumOne"]]: {
-    main: "0x19330d10D9Cc8751218eaf51E8885d058642E08a",
+    tokenMessage: "0x19330d10D9Cc8751218eaf51E8885D058642E08A",
+    main: "0x5723bca610da00f548709920f1a12da26714e704",
     usdc: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
     wbtc: "0x3f770Ac673856F105b586bb393d122721265aD46",
     chainId: arbitrum.id,
@@ -56,3 +58,4 @@ export const PERMIT_TYPES = {
     { name: "deadline", type: "uint256" },
   ],
 };
+export const SOLANA_ADDRESS = "3tL3r9wihxMSun282vf8ufb2Sz1ApWni5coN88QJJKBQ";
